@@ -1,0 +1,45 @@
+.Tacst_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  // background: rgba(0, 0, 0, 0.449);
+  border-radius: 5px;
+
+  h1 {
+    width: 97%;
+    margin-top: 0.2rem;
+    color: rgb(9, 210, 143);
+  }
+
+  .Tacst_content {
+    width: 97%;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid rgb(0, 0, 0);
+
+    .Tacst_row {
+      width: 70%;
+      display: flex;
+
+      .Tacstcol1,
+      .Tacstcol2,
+      .Tacstcol3,
+      .Tacstcol4 {
+        padding: 0.5rem;
+
+        .Tacst_link {
+          text-decoration: none;
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: black;
+          transition: 0.4s;
+        }
+        .Tacst_link:hover {
+          color: rgb(30, 243, 229);
+        }
+      }
+    }
+  }
+}

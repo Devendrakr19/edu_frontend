@@ -1,0 +1,158 @@
+.student_list_container {
+    width: 100%;
+    // border: 1px solid red;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+  
+    .student_list_title {
+      width: 100%;
+      // padding: 0.3rem;
+  
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
+  
+    .student_list_filter_div {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-top: 1rem;
+  
+      .search_area {
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgb(189, 186, 186);
+        padding: 0.2rem;
+        background: white;
+        border-radius: 5px;
+  
+        .Iosearch_bar {
+          font-size: 1.5rem;
+        }
+        input {
+          width: 90%;
+          outline: none;
+          border: none;
+          padding: 0.3rem;
+        }
+      }
+    }
+  
+    .student_list_title_div {
+      width: 100%;
+      // border: 1px solid red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+      border-bottom: 1px solid rgb(178, 175, 175);
+      border-top: 1px solid rgb(178, 173, 173);
+  
+      .student_list_title {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0.3rem;
+  
+        .student_list_content {
+          // border: 1px solid red;
+          border-radius: 5px;
+          padding: 0.2rem;
+          cursor: pointer;
+          transition: 0.4s;
+  
+          p {
+            font-size: 1.2rem;
+          }
+        }
+        .student_list_content:hover {
+          background: rgb(219, 216, 216);
+        }
+      }
+    }
+    .student_list_details_div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+  
+      .student_list_details {
+        width: 100%;
+        display: flex;
+        // border: 1px solid red;
+        justify-content: center;
+        align-items: center;
+        padding: 0.3rem;
+        border-bottom: 1px solid rgba(200, 197, 197, 0.757);
+  
+        .student_list_details_content1 {
+          width: 4%;
+          // border: 1px solid red;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+  
+          img {
+            width: 100%;
+            object-fit: cover;
+            height: 2.7rem;
+            border-radius: 50%;
+          }
+        }
+  
+        .student_list_details_content2 {
+          // border: 1px solid red;
+          width: 25%;
+          padding: 0.3rem;
+  
+          p {
+            text-align: center;
+            cursor: pointer;
+          }
+          p:hover {
+            text-decoration: underline rgba(0, 0, 0, 0.345);
+          }
+        }
+        .student_list_details_content3 {
+          // border: 1px solid red;
+          width: 25%;
+          padding: 0.3rem;
+  
+          p {
+            text-align: left;
+            color: rgb(3, 94, 179);
+            cursor: pointer;
+          }
+        }
+        .student_list_details_content4 {
+          // border: 1px solid red;
+          width: 15%;
+          padding: 0.3rem;
+        }
+        .student_list_details_content5 {
+          // border: 1px solid red;
+          width: 20%;
+          padding: 0.5rem;
+        }
+        .student_list_details_content6 {
+          // border: 1px solid red;
+          width: 20%;
+          padding: 0.3rem;
+  
+          p {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  

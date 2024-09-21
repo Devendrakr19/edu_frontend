@@ -1,0 +1,202 @@
+.Admin_dashboard_container {
+  // margin-top: 5rem;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(86.5rem, 1fr));
+  // position: absolute;
+  display: grid;
+  flex-direction: column;
+  background: rgba(226, 228, 227, 0.402);
+
+  .Admin_dashboard {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background: #52b9a6;
+
+    h2 {
+      width: 97.5%;
+    }
+  }
+
+  .admin_content {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    // background: #52b9a6;
+    margin-top: -0.1rem;
+
+    .admin_col1 {
+      width: 20%;
+      // background: rgba(0, 0, 0, 0.402);
+      border-radius: 6px;
+      display: flex;
+      // justify-content: center;
+      height: 50rem;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+      background: rgba(149, 242, 206, 0.402);
+      overflow-y: scroll;
+
+      .admin_row1 {
+        width: 100%;
+        margin-top: 0.5rem;
+
+        h1 {
+          text-align: center;
+        }
+      }
+      .admin_row2 {
+        border: 2px solid rgba(255, 0, 0, 0);
+        width: 62%;
+        margin-top: 0.5rem;
+
+        img {
+          width: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+      .admin_row2name {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // border: 2px solid red;
+
+        p {
+          font-size: 1.2rem;
+          font-weight: 500;
+        }
+      }
+
+      .admin_row3 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // border: 2px solid red;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        flex-direction: column;
+
+        p {
+          width: 91%;
+          border-radius: 5px;
+          transition: 0.3s;
+          // border: 2px solid red;
+
+          .admin_links {
+            padding: 0.3rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.3s;
+            color: rgb(8, 7, 7);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+          }
+        }
+
+        p:hover {
+          background: rgb(50, 53, 53);
+
+          .admin_links {
+            color: white;
+            margin-left: 0.5rem;
+          }
+        }
+
+        .course_related_div {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          .course_items {
+            // border: 1px solid red;
+            padding: 0.2rem;
+            width: 73%;
+            margin-top: 0.3rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .course_link {
+              font-size: 1.1rem;
+              color: rgb(0, 0, 0);
+            }
+          }
+          .course_items:hover {
+            background: rgb(50, 53, 53);
+            border-radius: 5px;
+
+            .course_link {
+              color: rgb(255, 255, 255);
+            }
+          }
+        }
+      }
+
+      .admin_row4 {
+        @extend .admin_row3;
+      }
+      .admin_row5 {
+        @extend .admin_row3;
+      }
+      .admin_row6 {
+        @extend .admin_row3;
+      }
+      .admin_row7 {
+        @extend .admin_row3;
+      }
+      .admin_row8 {
+        @extend .admin_row3;
+      }
+      .admin_row9 {
+        @extend .admin_row3;
+      }
+      .admin_row10 {
+        @extend .admin_row3;
+      }
+      .admin_row11 {
+        @extend .admin_row3;
+      }
+      .admin_row12 {
+        @extend .admin_row3;
+      }
+      .admin_row13 {
+        @extend .admin_row3;
+      }
+      .admin_row14 {
+        @extend .admin_row3;
+      }
+      .admin_row15 {
+        @extend .admin_row3;
+      }
+      .admin_row16 {
+        @extend .admin_row3;
+        margin-bottom: 0.6rem;
+
+        p {
+          .admin_links {
+            color: rgb(215, 5, 5);
+          }
+        }
+      }
+    }
+
+    .admin_col2 {
+      width: 77%;
+      // height: 50rem;
+      display: flex;
+      border-radius: 5px;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,73 @@
+.UredxMarketing_container {
+  width: 97%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+
+  .UredxMarketing_text_wrapper {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+
+    h2 {
+      margin-top: 1rem;
+      color: rgb(0, 255, 140);
+    }
+    p {
+      color: rgb(0, 0, 0);
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    .UredxMarketing_checkbox_div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.5rem;
+
+      input {
+        width: 10%;
+        outline: none;
+        border: none;
+        margin-left: -0.9rem;
+        height: 1.5rem;
+      }
+    }
+    i {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .UredxMarketing_btn_div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem;
+      margin-top: 1.5rem;
+
+      .UredxMarketing_btn {
+        width: 35%;
+        height: 2.7rem;
+        border: none;
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.729);
+        transition: 0.4s;
+
+        #UredxMarketing_btn_link {
+          text-decoration: none;
+          font-size: 1.1rem;
+          color: white;
+        }
+      }
+      .UredxMarketing_btn:hover {
+        background: #39a992;
+      }
+    }
+  }
+}

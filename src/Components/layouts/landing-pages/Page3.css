@@ -1,0 +1,101 @@
+.slick-slide > div {
+  margin: 0 20px;
+}
+.slick-arrow:before {
+  color: #52b9a6;
+  font-size: 40px;
+}.slick-slide>div:nth-child(1){
+  margin-left: 0;
+}
+
+
+.slick-prev {
+  top: -60px;
+  left: 1170px;
+}
+.slick-next {
+  right: 30px;
+  top: -60px;
+}
+.slick-dots li.slick-active button:before {
+  color: #52b9a6;
+  opacity: 1;
+}
+
+
+
+/* Responsive styles */
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .slick-arrow:before {
+    font-size: 20px;
+  }
+  .slick-prev {
+    top: -40px;
+    left: 70px;
+  }
+  .slick-next {
+    right: 10px;
+    top: -40px;
+  }
+}
+
+/* Small devices (tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .slick-arrow:before {
+    font-size: 25px;
+  }
+  .slick-prev {
+    top: -45px;
+    left: 600px;
+  }
+  .slick-next {
+    right: 15px;
+    top: -45px;
+  }
+}
+
+/* Medium devices (desktops, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .slick-arrow:before {
+    font-size: 30px;
+  }
+  .slick-prev {
+    top: -50px;
+    left: 750px;
+  }
+  .slick-next {
+    right: 20px;
+    top: -50px;
+  }
+}
+
+/* Large devices (large desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1200px) {
+  .slick-arrow:before {
+    font-size: 35px;
+  }
+  .slick-prev {
+    top: -55px;
+    left: 1050px;
+  }
+  .slick-next {
+    right: 25px;
+    top: -55px;
+  }
+}
+
+/* Extra large devices (larger desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .slick-arrow:before {
+    font-size: 40px;
+  }
+  .slick-prev {
+    top: -60px;
+    left: 1170px;
+  }
+  .slick-next {
+    right: 26px;
+    top: -60px;
+  }
+}

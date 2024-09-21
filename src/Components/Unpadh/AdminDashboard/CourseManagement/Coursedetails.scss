@@ -1,0 +1,104 @@
+.course_details_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .course_title {
+    width: 100%;
+    // border: 1px solid red;
+
+    h1 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      padding: 0.5rem;
+    }
+  }
+
+  .course_content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .course_filter_header {
+      width: 100%;
+      padding: 0.4rem;
+      display: flex;
+      justify-content: space-evenly;
+      border-bottom: 1px solid rgba(129, 128, 128, 0.39);
+      border-top: 1px solid rgba(106, 104, 104, 0.291);
+
+      .course_header {
+        // border: 1px solid red;
+        border-radius: 5px;
+        padding: 0.2rem;
+
+        select {
+          outline: none;
+          width: 100%;
+          background: transparent;
+          cursor: pointer;
+        }
+      }
+      .course_header:hover {
+        background: rgb(214, 213, 213);
+      }
+    }
+  }
+  .see_courses {
+    // border: 1px solid red;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+
+    .see_courses_items_div {
+      //   border: 1px solid red;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0.3rem;
+      border-bottom: 1px solid rgb(179, 177, 177);
+
+      .see_course_content1 {
+        width: 15%;
+        // border: 1px solid red;
+        padding: 0.3rem;
+
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+      .see_course_content2 {
+        width: 20%;
+        // border: 1px solid red;
+        padding: 0.3rem;
+      }
+      .see_course_content3 {
+        width: 10%;
+        // border: 1px solid red;
+        padding: 0.3rem;
+      }
+      .see_course_content4 {
+        width: 15%;
+        // border: 1px solid red;
+        padding: 0.3rem;
+      }
+      .see_course_content5 {
+        width: 15%;
+        // border: 1px solid red;
+        padding: 0.3rem;
+      }
+      .see_course_content6 {
+        width: 15%;
+        // border: 1px solid red;
+        padding: 0.3rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+.rohit {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5.5rem;
+  // border: 2px solid red;
+}
+
+.contanier-main {
+  display: grid;
+  row-gap: 30px;
+
+  /* // gap: 25px;
+    // width: 60%;
+    */
+  // border: 2px solid green;
+
+  .formclas {
+    margin-top: 30px;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 270px 270px;
+    column-gap: 30px;
+    height: 55px;
+    /* // border: 3px solid green; */
+  }
+
+  // #com {
+  //   /* // border: 2px solid red; */
+  // }
+  .size {
+    border: 2px solid greenyellow;
+    height: 50px;
+  }
+  .container ::placeholder {
+    /* // display: grid; */
+    padding-left: 20px;
+    font: bold;
+    font-weight: 600;
+    /* //  justify-content: center; */
+  }
+  .container section ::placeholder {
+    border: 2px solid red;
+  }
+  .box {
+    border: 2px solid black;
+  }
+  #name {
+    border: 1px solid black;
+  }
+  #firstName {
+    border: 1px solid black;
+  }
+  #lastName {
+    border: 1px solid black;
+  }
+  #phoneNumber {
+    border: 1px solid black;
+  }
+
+  #trainingNeeds {
+    border: 1px solid black;
+  }
+  #jobTitle {
+    border: 1px solid black;
+  }
+
+  .email {
+    display: grid;
+    grid-template-columns: 570px;
+    column-gap: 30px;
+    height: 55px;
+  }
+  .email ::placeholder {
+    padding-left: 20px;
+    font-family: 600;
+  }
+  #location {
+    font-size: 1rem;
+    color: black;
+    font-weight: 400;
+    display: grid;
+    /* // justify-content: center; */
+    align-items: center;
+    border: 1px solid black;
+  }
+
+  #email {
+    border: 1px solid black;
+  }
+  #companyName {
+    border: 1px solid black;
+  }
+
+  .business_btn {
+    /* // width: 45%; */
+    display: grid;
+    grid-template-columns: 530px;
+    /* // height: 30px; */
+    color: rgb(255, 255, 255);
+    grid-template-rows: 45px;
+    font-size: 1rem;
+    font-weight: 400;
+    /* // justify-content: center; */
+    align-items: center;
+    margin-bottom: 2rem;
+    background-color: rgb(0, 0, 0);
+  }
+
+  .business_btn:hover {
+    background-color: dimgray;
+  }
+
+}
