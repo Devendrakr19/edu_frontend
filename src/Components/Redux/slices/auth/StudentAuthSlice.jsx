@@ -13,6 +13,24 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const signupUser = createAsyncThunk(
+  "auth/signupUser",
+  async ({ name, email, mobile, password }, thunkAPI) => {
+    try {
+      const response = await signupService.signup(
+        name,
+        email,
+        mobile,
+        password
+      );
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const teacherLogin = createAsyncThunk(
   "auth/teacherLogin",
   async ({ email, password }, thunkAPI) => {
@@ -26,7 +44,7 @@ export const teacherLogin = createAsyncThunk(
 );
 
 export const teacherSignup = createAsyncThunk(
-  "auth/signupUser",
+  "auth/teacherSignup",
   async ({ name, email, mobile, password }, thunkAPI) => {
     try {
       const response = await signupService.teachersignup(
