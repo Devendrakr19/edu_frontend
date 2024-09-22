@@ -39,8 +39,7 @@ const Footer = () => {
             <button
               type="submit"
               className="text-white absolute end-2.5 bottom-[9px] 
-                
-                          bg-[#0BA085] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-full text-sm px-6 py-3 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+               bg-[#0BA085] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-full text-sm px-6 py-3 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Join now
             </button>
@@ -165,7 +164,7 @@ const Footer = () => {
         {/* <!-- Main container  --> */}
         <div className="mx-6 py-10 text-center md:text-left ">
           <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* <!-- logo and paragraph sectio --> */}
+
             <div className="">
               <img
                 src="logo.png"
