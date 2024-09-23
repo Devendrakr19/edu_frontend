@@ -11,8 +11,10 @@ import About from "../pages/About";
 import StudentDashboard from "../pages/StudentDashboard";
 import ResetPassword from "../layouts/forgot-password/ResetPassword";
 import GetOtp from "../layouts/forgot-password/GetOtp";
+import TeacherDashboard from "../pages/TeacherDashboard";
 
 const RoutConfig = () => {
+  
   return (
     <>
       <Router>
@@ -22,7 +24,7 @@ const RoutConfig = () => {
           <Route path="/teacher-login" element={<TeacherLogin />} />
           <Route path="/teacher-signup" element={<TeacherSignup />} />
           <Route path="/get-otp" element={<GetOtp />} />          
-          <Route path="/reset-password" element={<ResetPassword />} />          
+          <Route path="/reset-password" element={<ResetPassword />} />         
 
           <Route element={<RouteLayout />}>
             <Route path="/" element={<LandigPage />} />
@@ -34,6 +36,14 @@ const RoutConfig = () => {
               element={
                 <ProtectedRoute>
                   <StudentDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/teacher-dashboard"
+              element={
+                <ProtectedRoute>
+                  <TeacherDashboard />
                 </ProtectedRoute>
               }
             />

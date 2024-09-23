@@ -14,7 +14,7 @@ const Navbar = ({ AddCart }) => {
   const userData = useSelector((state) => state?.loginsignupauth?.user);
   const teacherData = useSelector((state)=>state?.loginsignupauth?.teacherdata)
   console.log(userData);
-  console.log(teacherData);
+  console.log("teacher data",teacherData);
 
   const navigate = useNavigate();
 
@@ -31,7 +31,13 @@ const Navbar = ({ AddCart }) => {
   };
 
   const handleDashboard = () => {
-    navigate("/student-dashboard");
+    if(userData?.name){
+      navigate("/student-dashboard");
+    }
+    else{
+      navigate("/teacher-dashboard")
+      // alert("Techer dashboard coming soon");
+    }
   };
 
   return (
@@ -56,7 +62,7 @@ const Navbar = ({ AddCart }) => {
             Business
           </Link>
 
-          <Link to="/teachersignup" className="hover:text-[#42a38c]">
+          <Link to="/teacher-signup" className="hover:text-[#42a38c]">
             Become Instructor
           </Link>
 
@@ -94,7 +100,7 @@ const Navbar = ({ AddCart }) => {
           ) : (
               <div className="px-[20px] py-[2px] cursor-pointer site_btn border_btn rounded-full"
               onClick={handleDashboard}>
-              <p>{userData?.name || teacherData?.name}</p>
+              <p>Hi, {userData?.name || teacherData?.name}</p>
             </div>
           )}
         </div>
