@@ -1,5 +1,5 @@
 import { Link, useNavigate, Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "./Components/Unpadh/Dropdown";
 import { Badge } from "antd";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -13,11 +13,11 @@ const Navbar = ({ AddCart }) => {
   const [PcDropdownVisible, setPcDropdownVisible] = useState(false);
   const userData = useSelector((state) => state?.loginsignupauth?.user);
   const teacherData = useSelector((state)=>state?.loginsignupauth?.teacherdata)
-  console.log(userData);
-  console.log("teacher data",teacherData);
+  // console.log(userData);
+  // console.log("teacher data",teacherData);
 
   const navigate = useNavigate();
-
+ 
   const toggleMobileSidebar = () => {
     setMobileSidebarVisible((prevstate) => !prevstate);
   };

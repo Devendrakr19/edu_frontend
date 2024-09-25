@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../Redux/slices/auth/StudentAuthSlice";
 import RecordedClass from "../layouts/teacher-dashboard/recorded-class/RecordedClass";
@@ -8,6 +8,7 @@ import RecordedClass from "../layouts/teacher-dashboard/recorded-class/RecordedC
 const TeacherDashboard = () => {
   const [handleactive, setHandleactive] = useState(0);
   const [dashboardsidebar, setDashboardsidebar] = useState(false);
+  const teacherData = useSelector((state)=>state?.loginsignupauth?.teacherdata)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -70,7 +71,7 @@ const TeacherDashboard = () => {
               />
             </div>
             <div className="p-[5px]">
-              <p>John Williams john</p>
+              <p>{teacherData?.name}</p>
             </div>
           </div>
 
