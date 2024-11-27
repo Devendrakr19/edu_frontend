@@ -11,10 +11,8 @@ const Navbar = ({ AddCart }) => {
   const [isMobileSidebarVisible, setMobileSidebarVisible] = useState(false);
   const [MobileDropdownVisible, setMobileDropdownVisible] = useState(false);
   const [PcDropdownVisible, setPcDropdownVisible] = useState(false);
-  const userData = useSelector((state) => state?.loginsignupauth?.user);
-  const teacherData = useSelector((state)=>state?.loginsignupauth?.teacherdata)
-  console.log(userData);
-  console.log(teacherData);
+  const userName = useSelector((state) => state?.loginsignupauth?.user?.name);
+  const role = useSelector((state) => state?.loginsignupauth?.user?.role);
 
   const navigate = useNavigate();
 
@@ -31,14 +29,17 @@ const Navbar = ({ AddCart }) => {
   };
 
   const handleDashboard = () => {
-    navigate("/student-dashboard");
+    if (userName && role === "student") {
+      navigate("/student-dashboard");
+    } else {
+      navigate("/teacher-dashboard");
+    }
   };
 
   return (
     <>
       {/* Navbar */}
       <div className="w-full flex justify-between items-center lg:sticky top-0 z-20 bg-white p-1 lg:p-[8px]">
-        {/* Logo and Dashboard link */}
         <div className="w-32 ml-4 lg:w-36 cursor-pointer">
           <img src="./uredx_logos.webp" alt="Logo" />
         </div>
@@ -56,7 +57,7 @@ const Navbar = ({ AddCart }) => {
             Business
           </Link>
 
-          <Link to="/teachersignup" className="hover:text-[#42a38c]">
+          <Link to="/teacher-signup" className="hover:text-[#42a38c]">
             Become Instructor
           </Link>
 
@@ -69,7 +70,6 @@ const Navbar = ({ AddCart }) => {
           </Link>
         </div>
 
-        {/* Cart icon and login/signup buttons */}
         <div className="flex items-center space-x-4">
           <Link to="/cart" className="nav_link">
             {/* <Badge count={AddCart.length}> */}
@@ -82,7 +82,7 @@ const Navbar = ({ AddCart }) => {
               onClick={toggleMobileSidebar}
             />
           </div>
-          {!userData && !teacherData ? (
+          {!userName ? (
             <>
               <button className="site_btn border_btn hidden lg:block rounded-full py-[2px] px-[18px]">
                 <Link to="/student-login">Login</Link>
@@ -92,9 +92,11 @@ const Navbar = ({ AddCart }) => {
               </button>
             </>
           ) : (
-              <div className="px-[20px] py-[2px] cursor-pointer site_btn border_btn rounded-full"
-              onClick={handleDashboard}>
-              <p>{userData?.name || teacherData?.name}</p>
+            <div
+              className="px-[20px] py-[2px] cursor-pointer site_btn border_btn rounded-full"
+              onClick={handleDashboard}
+            >
+              <p>Hi, {userName}</p>
             </div>
           )}
         </div>
