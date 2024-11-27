@@ -63,11 +63,11 @@ export const teacherSignup = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
-    teacherdata: null,
+    user: {
+      name:localStorage.getItem("userName") || ""
+    },
     token: localStorage.getItem("token"),
     loading: false,
-    error: null,
   },
   reducers: {
     setToken: (state, action) => {
@@ -76,9 +76,9 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.user = null;
-      state.teacherdata = null;
       state.token = null;
       localStorage.removeItem("token");
+      localStorage.removeItem("userName");
     },
   },
 
@@ -86,55 +86,29 @@ const authSlice = createSlice({
     builder
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
         state.token = action.payload.token;
+        state.user = action.payload.user;
         localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("userName", action.payload.user.name);
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.error = action.payload;
-        state.loading = false;
-      })
-      .addCase(signupUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(signupUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload.user;
-      })
-      .addCase(signupUser.rejected, (state, action) => {
-        state.error = action.payload;
         state.loading = false;
       })
       // Teacher Login
       .addCase(teacherLogin.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(teacherLogin.fulfilled, (state, action) => {
         state.loading = false;
-        state.teacherdata = action.payload.teacherdata;
         state.token = action.payload.token;
+        state.user = action.payload.user;
         localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("userName", action.payload.user.name);
       })
       .addCase(teacherLogin.rejected, (state, action) => {
-        state.error = action.payload;
-        state.loading = false;
-      })
-      .addCase(teacherSignup.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(teacherSignup.fulfilled, (state, action) => {
-        state.loading = false;
-        state.teacherdata = action.payload.teacherdata;
-      })
-      .addCase(teacherSignup.rejected, (state, action) => {
-        state.error = action.payload;
         state.loading = false;
       });
   },

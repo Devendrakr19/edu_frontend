@@ -1,7 +1,12 @@
 import { Autocomplete, Box, Grid, Modal, TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const CourseDetails = ({ open, onClose }) => {
+  const [IsPaid, setIsPaid] = useState("");
+
+  const HandlechangePaid = (e, newvalue) => {
+    setIsPaid(newvalue);
+  };
   return (
     <>
       <Modal open={open} onClose={onClose}>
@@ -9,12 +14,18 @@ const CourseDetails = ({ open, onClose }) => {
           <div className="bg-[white] w-[50%] p-[15px] rounded">
             <div className="flex justify-between items-center">
               <h1 className="text-[18px] font-medium">Create Course Folder</h1>
-              <span className="text-[22px] font-semibold cursor-pointer" onClick={onClose}>X</span>
+              <span
+                className="text-[22px] font-semibold cursor-pointer"
+                onClick={onClose}
+              >
+                X
+              </span>
             </div>
             <Grid container columnSpacing={1} rowSpacing={1}>
               <Grid item xs={4}>
                 <label htmlFor="name">
-                  Teacher name shows on Course <span className="text-[red]">*</span>
+                  Teacher name shows on Course{" "}
+                  <span className="text-[red]">*</span>
                 </label>
                 <TextField
                   id="name"
@@ -112,6 +123,8 @@ const CourseDetails = ({ open, onClose }) => {
                   disablePortal
                   fullWidth
                   options={["Free", "Paid"]}
+                  value={IsPaid}
+                  onChange={HandlechangePaid}
                   renderInput={(params) => (
                     <TextField
                       {...params}
@@ -126,20 +139,26 @@ const CourseDetails = ({ open, onClose }) => {
                   )}
                 />
               </Grid>
+
+              {IsPaid === "Paid" && (
+                <Grid item xs={4}>
+                  <label htmlFor="price">
+                    Price <span className="text-[red]">*</span>
+                  </label>
+                  <TextField
+                    id="price"
+                    fullWidth
+                    sx={{ "& .MuiInputBase-input": { padding: "9px" } }}
+                    placeholder="Enter price"
+                  />
+                </Grid>
+              )}
               <Grid item xs={4}>
-                <label htmlFor="price">
-                  Price <span className="text-[red]">*</span>
+                <label htmlFor="file">
+                  Upload image to shows on course
+                  <span className="text-[red]">*</span>
                 </label>
-                <TextField
-                  id="price"
-                  fullWidth
-                  sx={{ "& .MuiInputBase-input": { padding: "9px" } }}
-                  placeholder="Enter price"
-                />
-              </Grid>
-              <Grid item xs={4}>
-                 <label htmlFor="file">Upload image to shows on course<span className="text-[red]">*</span></label>
-                 <input type="file" className="w-[100%] mt-[7px]"/>
+                <input type="file" className="w-[100%] mt-[7px]" />
               </Grid>
               <Grid item xs={12}>
                 <label htmlFor="comment">
@@ -155,7 +174,9 @@ const CourseDetails = ({ open, onClose }) => {
             </Grid>
             <div className="flex gap-[20px] mt-[15px]">
               <button className="site_btn">Save</button>
-              <button className="site_btn border_btn" onClick={onClose}>Cancel</button>
+              <button className="site_btn border_btn" onClick={onClose}>
+                Cancel
+              </button>
             </div>
           </div>
         </Box>
