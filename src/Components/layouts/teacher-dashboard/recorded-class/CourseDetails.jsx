@@ -1,15 +1,31 @@
 import { Autocomplete, Box, Grid, Modal, TextField } from "@mui/material";
-import {useFormik } from "formik";
-import React, { useState } from "react";
+import { useFormik } from "formik";
+import React, { useEffect, useRef, useState } from "react";
 import * as Yup from "yup";
+import {
+  createCourses,
+  getCourse,
+} from "../../../Redux/slices/courses/CourseSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const CourseDetails = ({ open, onClose }) => {
-  const handleFilechange = (e) =>{
-      const selectedFile = e.target.files[0];
-      if (selectedFile) {
-        formik.setFieldValue("file", selectedFile); 
-      }  
-  }
+  const dispatch = useDispatch();
+  const loading = useSelector(
+    (state) => state?.coursedata?.createCoursesLoading
+  );
+
+  useEffect(() => {
+    dispatch(getCourse());
+  }, [dispatch]);
+
+  const fileInputRef = useRef(null);
+  const handleFilechange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      formik.setFieldValue("file", selectedFile);
+    }
+  };
 
   const HandlechangePaid = (e, newvalue) => {
     formik.setFieldValue("ispaid", newvalue);
@@ -21,14 +37,24 @@ const CourseDetails = ({ open, onClose }) => {
     subcategory: Yup.string().required("Subcategory is required"),
     level: Yup.string().required("Level is required"),
     coursetitle: Yup.string().required("Course title is required"),
-    duration: Yup.number().required("Duration is required").positive().integer(),
+    duration: Yup.number()
+      .required("Duration is required")
+      .positive()
+      .integer(),
     ispaid: Yup.string().required("IsPaid is required"),
     file: Yup.mixed()
       .required("File is required")
-      .test("fileSize", "File too large", (value) => !value || value.size <= 5000000) // Max file size 5MB
-      .test("fileType", "Only jpg and png file type", (value) => !value || ["image/jpeg", "image/png"].includes(value.type)),
+      .test(
+        "fileSize",
+        "File too large",
+        (value) => !value || value.size <= 5000000
+      ) // Max file size 5MB
+      .test(
+        "fileType",
+        "Only jpg and png file type",
+        (value) => !value || ["image/jpeg", "image/png"].includes(value.type)
+      ),
   });
-
 
   const formik = useFormik({
     initialValues: {
@@ -40,14 +66,38 @@ const CourseDetails = ({ open, onClose }) => {
       duration: "",
       ispaid: "",
       price: "",
-      file:"",
+      file: "",
       comment: "",
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log("clicked", values); 
-      alert("submited");
-      formik.resetForm();
+      console.log("clicked", values);
+      const formData = new FormData();
+
+      Object.keys(values).forEach((key) => {
+        if (key !== "file") {
+          formData.append(key, values[key]);
+        }
+      });
+      if (values.file) {
+        formData.append("file", values.file);
+        formData.append("filename", values.file.name);
+      }
+
+      dispatch(createCourses(formData))
+        .then(() => {
+          toast.success("Course Created Successfully");
+          dispatch(getCourse());
+          onClose();
+          formik.resetForm();
+          formik.setFieldValue("file", null);
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
+        })
+        .catch((error) => {
+          toast.error("Error creating course");
+        });
     },
   });
   return (
@@ -74,12 +124,12 @@ const CourseDetails = ({ open, onClose }) => {
                   <TextField
                     id="name"
                     fullWidth
-                    value={formik.values.name}
+                    value={formik.values.name || ""}
                     onChange={formik.handleChange}
                     sx={{ "& .MuiInputBase-input": { padding: "9px" } }}
                     placeholder="Enter Your Name"
-                    error = {formik.touched.name && Boolean(formik.errors.name)}
-                    helperText = {formik.touched.name && formik.errors.name}
+                    error={formik.touched.name && Boolean(formik.errors.name)}
+                    helperText={formik.touched.name && formik.errors.name}
                   />
                 </Grid>
                 <Grid item xs={4}>
@@ -91,8 +141,10 @@ const CourseDetails = ({ open, onClose }) => {
                     disablePortal
                     fullWidth
                     options={["Programming", "Marketing"]}
-                    value={formik.values.category}
-                    onChange={(e, newvalue)=>{formik.setFieldValue("category", newvalue)}}
+                    value={formik.values.category || ""}
+                    onChange={(e, newvalue) => {
+                      formik.setFieldValue("category", newvalue);
+                    }}
                     renderInput={(params) => (
                       <TextField
                         {...params}
@@ -103,8 +155,13 @@ const CourseDetails = ({ open, onClose }) => {
                           },
                         }}
                         placeholder="select category"
-                        error = {formik.touched.category && Boolean(formik.errors.category)}
-                        helperText = {formik.touched.category && formik.errors.category}
+                        error={
+                          formik.touched.category &&
+                          Boolean(formik.errors.category)
+                        }
+                        helperText={
+                          formik.touched.category && formik.errors.category
+                        }
                       />
                     )}
                   />
@@ -118,8 +175,10 @@ const CourseDetails = ({ open, onClose }) => {
                     disablePortal
                     fullWidth
                     options={["web development", "Mobile development"]}
-                    value={formik.values.subcategory}
-                    onChange={(e, newvalue)=>{formik.setFieldValue("subcategory", newvalue)}}
+                    value={formik.values.subcategory || ""}
+                    onChange={(e, newvalue) => {
+                      formik.setFieldValue("subcategory", newvalue);
+                    }}
                     renderInput={(params) => (
                       <TextField
                         {...params}
@@ -130,8 +189,14 @@ const CourseDetails = ({ open, onClose }) => {
                           },
                         }}
                         placeholder="Select sub category"
-                        error = {formik.touched.subcategory && Boolean(formik.errors.subcategory)}
-                        helperText = {formik.touched.subcategory && formik.errors.subcategory}
+                        error={
+                          formik.touched.subcategory &&
+                          Boolean(formik.errors.subcategory)
+                        }
+                        helperText={
+                          formik.touched.subcategory &&
+                          formik.errors.subcategory
+                        }
                       />
                     )}
                   />
@@ -145,8 +210,10 @@ const CourseDetails = ({ open, onClose }) => {
                     disablePortal
                     fullWidth
                     options={["Beginner", "Intermediate", "Advanced"]}
-                    value={formik.values.level}
-                    onChange={(e, newvalue)=>{formik.setFieldValue("level", newvalue)}}
+                    value={formik.values.level || ""}
+                    onChange={(e, newvalue) => {
+                      formik.setFieldValue("level", newvalue);
+                    }}
                     renderInput={(params) => (
                       <TextField
                         {...params}
@@ -157,8 +224,10 @@ const CourseDetails = ({ open, onClose }) => {
                           },
                         }}
                         placeholder="Select course level"
-                        error = {formik.touched.level && Boolean(formik.errors.level)}
-                        helperText = {formik.touched.level && formik.errors.level}
+                        error={
+                          formik.touched.level && Boolean(formik.errors.level)
+                        }
+                        helperText={formik.touched.level && formik.errors.level}
                       />
                     )}
                   />
@@ -170,12 +239,17 @@ const CourseDetails = ({ open, onClose }) => {
                   <TextField
                     id="coursetitle"
                     fullWidth
-                    value={formik.values.coursetitle}
+                    value={formik.values.coursetitle || ""}
                     onChange={formik.handleChange}
                     sx={{ "& .MuiInputBase-input": { padding: "9px" } }}
                     placeholder="Write course title"
-                    error = {formik.touched.coursetitle && Boolean(formik.errors.coursetitle)}
-                    helperText = {formik.touched.coursetitle && formik.errors.coursetitle}
+                    error={
+                      formik.touched.coursetitle &&
+                      Boolean(formik.errors.coursetitle)
+                    }
+                    helperText={
+                      formik.touched.coursetitle && formik.errors.coursetitle
+                    }
                   />
                 </Grid>
                 <Grid item xs={4}>
@@ -189,8 +263,12 @@ const CourseDetails = ({ open, onClose }) => {
                     onChange={formik.handleChange}
                     sx={{ "& .MuiInputBase-input": { padding: "9px" } }}
                     placeholder="No. of month"
-                    error = {formik.touched.duration && Boolean(formik.errors.duration)}
-                    helperText = {formik.touched.duration && formik.errors.duration}
+                    error={
+                      formik.touched.duration && Boolean(formik.errors.duration)
+                    }
+                    helperText={
+                      formik.touched.duration && formik.errors.duration
+                    }
                   />
                 </Grid>
                 <Grid item xs={4}>
@@ -202,7 +280,7 @@ const CourseDetails = ({ open, onClose }) => {
                     disablePortal
                     fullWidth
                     options={["Free", "Paid"]}
-                    value={formik.values.ispaid}
+                    value={formik.values.ispaid || ""}
                     onChange={HandlechangePaid}
                     renderInput={(params) => (
                       <TextField
@@ -214,8 +292,12 @@ const CourseDetails = ({ open, onClose }) => {
                           },
                         }}
                         placeholder="Select"
-                        error = {formik.touched.ispaid && Boolean(formik.errors.ispaid)}
-                        helperText = {formik.touched.ispaid && formik.errors.ispaid}
+                        error={
+                          formik.touched.ispaid && Boolean(formik.errors.ispaid)
+                        }
+                        helperText={
+                          formik.touched.ispaid && formik.errors.ispaid
+                        }
                       />
                     )}
                   />
@@ -223,9 +305,7 @@ const CourseDetails = ({ open, onClose }) => {
 
                 {formik.values.ispaid === "Paid" && (
                   <Grid item xs={4}>
-                    <label htmlFor="price">
-                      Price
-                    </label>
+                    <label htmlFor="price">Price</label>
                     <TextField
                       id="price"
                       fullWidth
@@ -233,8 +313,10 @@ const CourseDetails = ({ open, onClose }) => {
                       onChange={formik.handleChange}
                       sx={{ "& .MuiInputBase-input": { padding: "9px" } }}
                       placeholder="Enter price"
-                      error = {formik.touched.price && Boolean(formik.errors.price)}
-                      helperText = {formik.touched.price && formik.errors.price}
+                      error={
+                        formik.touched.price && Boolean(formik.errors.price)
+                      }
+                      helperText={formik.touched.price && formik.errors.price}
                     />
                   </Grid>
                 )}
@@ -243,10 +325,17 @@ const CourseDetails = ({ open, onClose }) => {
                     Upload image to shows on course
                     <span className="text-[red]">*</span>
                   </label>
-                  <input type="file"  onChange={handleFilechange} className="w-[100%] mt-[7px]" />
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleFilechange}
+                    className="w-[100%] mt-[7px]"
+                  />
                   {formik.touched.file && formik.errors.file && (
-                  <div className="text-[#ff0000dd] text-[14px] mt-1">{formik.errors.file}</div>
-                )}
+                    <div className="text-[#c31212] text-[13px] mt-1">
+                      {formik.errors.file}
+                    </div>
+                  )}
                 </Grid>
                 <Grid item xs={12}>
                   <label htmlFor="comment">
@@ -263,8 +352,16 @@ const CourseDetails = ({ open, onClose }) => {
                 </Grid>
               </Grid>
               <div className="flex gap-[20px] mt-[15px]">
-                <button type="submit" className="site_btn">Save</button>
-                <button type="button" className="site_btn border_btn" onClick={()=>{onClose(), formik.resetForm()}}>
+                <button type="submit" className="site_btn">
+                  {loading ? "Submitting..." : "Submit"}
+                </button>
+                <button
+                  type="button"
+                  className="site_btn border_btn"
+                  onClick={() => {
+                    onClose(), formik.resetForm();
+                  }}
+                >
                   Cancel
                 </button>
               </div>

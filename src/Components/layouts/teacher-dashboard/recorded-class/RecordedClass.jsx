@@ -2,52 +2,15 @@ import React, { useState } from "react";
 import { FaFolderPlus } from "react-icons/fa";
 import CourseDetails from "./CourseDetails";
 import UploadedClasses from "./UploadedClasses";
+import { useSelector } from "react-redux";
+import { MdDelete } from "react-icons/md";
 
 const RecordedClass = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [showCourses, setShowCourses] = useState(true);
-  const createfolder = [
-    {
-      img: "../Mern.png",
-      coursetitle: "Become Fullstack using MERN Express, mongodb",
-      teachername: "Devendra Kumar pandit",
-      Price: 2999,
-      level: "Beginner",
-      duration: "6",
-    },
-    {
-      img: "../Mern.png",
-      coursetitle: "C++ for beginner",
-      teachername: "Devendra Kumar pandit",
-      Price: 4999,
-      level: "Beginner",
-      duration: "6",
-    },
-    {
-      img: "../Mern.png",
-      coursetitle: "Java with DSA for beginner to advanced",
-      teachername: "Devendra Kumar pandit",
-      Price: 5999,
-      level: "Beginner",
-      duration: "8",
-    },
-    {
-      img: "../Mern.png",
-      coursetitle: "Java with DSA for beginner to advanced",
-      teachername: "Devendra Kumar pandit",
-      Price: 5999,
-      level: "Beginner",
-      duration: "8",
-    },
-    {
-      img: "../Mern.png",
-      coursetitle: "Java with DSA for beginner to advanced",
-      teachername: "Devendra Kumar pandit",
-      Price: 5999,
-      level: "Beginner",
-      duration: "8",
-    },
-  ];
+  const courseData =
+    useSelector((state) => state?.coursedata?.getCourse?.courses) || [];
+  console.log("courseData", courseData);
 
   const handleCourses = () => {
     setShowCourses(false);
@@ -64,43 +27,53 @@ const RecordedClass = () => {
         <div className="flex flex-wrap gap-[20px]">
           {showCourses ? (
             <>
-              {createfolder.map((item, index) => (
+              {courseData?.map((item, index) => (
                 <div
-                  className="border-[1px] border-[#adacac] transition-all delay-75 hover:bg-[#ceeace] cursor-pointer rounded w-[250px] px-[6px] py-[6px]"
-                  onClick={handleCourses}
+                  key={index}
+                  className="border-[1px] border-[#adacac] transition-all delay-75 hover:bg-[#ceeace] rounded w-[250px] px-[6px] py-[6px]"
                 >
                   <img
-                    src={item.img}
-                    alt=""
+                    src={item?.img}
+                    alt="Not available"
                     className="w-[250px] rounded object-cover"
                   />
-                  <p className="text-[15px] font-medium leading-[18px] mt-[5px]">
-                    {item.coursetitle}
+                  <p
+                    onClick={handleCourses}
+                    className="text-[15px] text-[#296bb6] cursor-pointer font-medium leading-[18px] mt-[5px]"
+                  >
+                    {item?.coursetitle}
                   </p>
                   <p className="text-[14px] font-semibold">
                     Teacher:{" "}
                     <span className="text-[13px] font-medium">
-                      {item.teachername}
+                      {item?.name}
                     </span>
                   </p>
-                  <p className="text-[14px] font-semibold">
-                    Price:{" "}
-                    <span className="text-[13px] font-medium">
-                      Rs {item.Price}
-                    </span>
-                  </p>
+                  {item?.price ? (
+                    <p className="text-[14px] font-semibold">
+                      Price:{" "}
+                      <span className="text-[13px] font-medium">
+                        Rs {item?.price}
+                      </span>
+                    </p>
+                  ) : (
+                    ""
+                  )}
                   <p className="text-[14px] font-semibold">
                     Lavel:
                     <span className="text-[13px] font-medium">
-                      {item.level}
+                      {item?.level}
                     </span>
                   </p>
-                  <p className="text-[14px] font-semibold">
-                    Duration:{" "}
-                    <span className="text-[13px] font-medium">
-                      {item.duration} months
-                    </span>
-                  </p>
+                  <div className="flex justify-between items-center">
+                    <p className="text-[14px] font-semibold">
+                      Duration:{" "}
+                      <span className="text-[13px] font-medium">
+                        {item?.duration} months
+                      </span>
+                    </p>
+                    <MdDelete className="cursor-pointer" />
+                  </div>
                 </div>
               ))}
               <div
@@ -111,7 +84,7 @@ const RecordedClass = () => {
               </div>
             </>
           ) : (
-            <UploadedClasses setShowCourses={setShowCourses}/>
+            <UploadedClasses setShowCourses={setShowCourses} />
           )}
         </div>
       </div>
