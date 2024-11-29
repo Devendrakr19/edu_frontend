@@ -12,7 +12,7 @@ const Page1 = ()=> {
   }, []);
   return (
     <>
-      <div className="h-[750px] md:h-[580px]  bg-[#0BA085]">
+      <div className="h-[750px] md:h-[580px]  bg-[#2f9592]">
         <section className="container flex flex-col items-center justify-between ">
           <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
             {/* text container  */}

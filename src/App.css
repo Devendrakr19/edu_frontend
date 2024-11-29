@@ -1,7 +1,7 @@
 /* In src/index.css or another global CSS file */
 
-@import 'slick-carousel/slick/slick.css';
-@import 'slick-carousel/slick/slick-theme.css';
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 
@@ -23,14 +23,14 @@ h6 {
   font-family: "Manrope", "sans-serif";
 }
 
-label{
+label {
   font-size: 14px;
 }
 
 .site_btn {
   font-size: 16px;
   font-weight: 500;
-  background-color: #42a38c;
+  background-color: #2f9592;
   color: #fff;
   padding: 6px 16px;
   border-radius: 4px;
@@ -42,20 +42,20 @@ label{
 
 .site_btn:hover {
   background-color: transparent;
-  color: #42a38c;
-  border: 1px solid #42a38c;
+  color: #2f9592;
+  border: 1px solid #2f9592;
 }
 
 .border_btn {
   background-color: transparent;
-  color: #42a38c;
-  border: 1px solid #42a38c;
+  color: #2f9592;
+  border: 1px solid #2f9592;
 }
 
 .border_btn:hover {
-  background-color: #42a38c;
+  background-color: #2f9592;
   color: #fff;
-  border: 1px solid #42a38c;
+  border: 1px solid #2f9592;
 }
 
 .scrollbar_hide::-webkit-scrollbar {
@@ -78,7 +78,7 @@ label{
 }
 
 /* Admindashboard */
- .gary_btn {
+.gary_btn {
   font-size: 16px;
   font-weight: 500;
   background-color: gray;
@@ -89,14 +89,14 @@ label{
   border: 1px solid transparent;
   transition: all 0.5s;
   cursor: pointer;
- }
- .border_gray{
+}
+.border_gray {
   background-color: transparent;
   color: black;
   border: 1px solid gray;
- }
- .border_gray:hover{
+}
+.border_gray:hover {
   background-color: gray;
   color: black;
   border: 1px solid gray;
- }
+}

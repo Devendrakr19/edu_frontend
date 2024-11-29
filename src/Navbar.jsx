@@ -39,49 +39,49 @@ const Navbar = ({ AddCart }) => {
   return (
     <>
       {/* Navbar */}
-      <div className="w-full flex justify-between items-center lg:sticky top-0 z-20 bg-white p-1 lg:p-[8px]">
-        <div className="w-32 ml-4 lg:w-36 cursor-pointer">
-          <img src="./uredx_logos.webp" alt="Logo" />
+      <div className="w-full flex justify-between items-center lg:sticky top-0 z-20 bg-white px-[6px] py-[16px] lg:px-[8px] shadow-md">
+        <div className="ml-[30px] cursor-pointer">
+          <img src="./icons/logo.svg" alt="Logo" className="w-[180px]"/>
         </div>
 
         {/* Dropdown items in desktop mode */}
         <div className="hidden lg:flex lg:space-x-6">
           <div className="relative">
-            <Link className="hover:text-[#42a38c]" onClick={togglePcDropdown}>
+            <Link className="hover:text-[#37a6a2] font-medium" onClick={togglePcDropdown}>
               Programs
             </Link>
             {PcDropdownVisible && <Dropdown />}
           </div>
 
-          <Link to="/business" className="hover:text-[#42a38c]">
-            Business
-          </Link>
-
-          <Link to="/teacher-signup" className="hover:text-[#42a38c]">
+          <Link to="/teacher-signup" className="hover:text-[#2f9592] font-medium">
             Become Instructor
           </Link>
 
-          <Link to="/about" className="hover:text-[#42a38c]">
+          <Link to="/about" className="hover:text-[#2f9592] font-medium">
             About us
           </Link>
 
-          <Link to="/contact" className="hover:text-[#42a38c]">
+          <Link to="/contact" className="hover:text-[#2f9592] font-medium">
             Contact
+          </Link>
+
+          <Link to="/help" className="hover:text-[#2f9592] font-medium">
+            Help?
           </Link>
         </div>
 
         <div className="flex items-center space-x-4">
+          <div className="lg:hidden">
+            <RxHamburgerMenu
+              className="text-3xl font-medium text-[black] cursor-pointer"
+              onClick={toggleMobileSidebar}
+            />
+          </div>
           <Link to="/cart" className="nav_link">
             {/* <Badge count={AddCart.length}> */}
             <FaShoppingCart className="text-3xl text-background" />
             {/* </Badge> */}
           </Link>
-          <div className="lg:hidden">
-            <RxHamburgerMenu
-              className="text-3xl font-medium text-[black]"
-              onClick={toggleMobileSidebar}
-            />
-          </div>
           {!userName ? (
             <>
               <button className="site_btn border_btn hidden lg:block rounded-full py-[2px] px-[18px]">
