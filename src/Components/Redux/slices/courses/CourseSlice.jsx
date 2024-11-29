@@ -23,6 +23,17 @@ export const getCourse = createAsyncThunk(
     }
   }
 );
+export const deleteCourse = createAsyncThunk(
+  "course/deleteCourse",
+  async (id, thunkAPI) => {
+    try {
+      const response = await courseService().deletecourse(id);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const courseSlice = createSlice({   
   name: "course",

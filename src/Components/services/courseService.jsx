@@ -41,6 +41,19 @@ const courseService = () => {
         );
       }
     },
+    deletecourse: async (id) => {
+      const url = `${baseurl}/course/delete-course/${id}`;
+      try {
+        const response = await http.delete(url, config);
+        handleSuccess(response.data, "Course deleted successfully");
+        return response.data;
+      } catch (error) {
+        handleFailure(error);
+        throw new Error(
+          "An error occurred while deleting the course. Please try again."
+        );
+      }
+    },
   };
 };
 
