@@ -5,15 +5,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import LandigPage from "../pages/LandigPage";
 import RouteLayout from "./RouteLayout";
 import ProtectedRoute from "./ProtectedRoute";
-import Login from "../auth/student-auth/Login";
-import Signup from "../auth/student-auth/Signup";
-import TeacherLogin from "../auth/teacher-auth/TeacherLogin";
-import TeacherSignup from "../auth/teacher-auth/TeacherSignup";
+// import Login from "../auth/student-auth/Login";
+// import Signup from "../auth/student-auth/Signup";
+// import TeacherLogin from "../auth/teacher-auth/TeacherLogin";
+// import TeacherSignup from "../auth/teacher-auth/TeacherSignup";
 import About from "../pages/About";
 import StudentDashboard from "../pages/StudentDashboard";
 import ResetPassword from "../layouts/forgot-password/ResetPassword";
 import GetOtp from "../layouts/forgot-password/GetOtp";
 import TeacherDashboard from "../pages/TeacherDashboard";
+import Signup from "../auth/Signup";
+import Login from "../auth/Login";
 
 const RoutConfig = () => {
   
@@ -22,12 +24,13 @@ const RoutConfig = () => {
       <Router>
         <ToastContainer/>
         <Routes>
-          <Route path="/student-login" element={<Login />} />
-          <Route path="/student-signup" element={<Signup />} />
-          <Route path="/teacher-login" element={<TeacherLogin />} />
-          <Route path="/teacher-signup" element={<TeacherSignup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/teacher-login" element={<TeacherLogin />} />
+          <Route path="/teacher-signup" element={<TeacherSignup />} /> */}
           <Route path="/get-otp" element={<GetOtp />} />          
-          <Route path="/reset-password" element={<ResetPassword />} />         
+          <Route path="/reset-password" element={<ResetPassword />} /> 
+                 
 
           <Route element={<RouteLayout />}>
             <Route path="/" element={<LandigPage />} />

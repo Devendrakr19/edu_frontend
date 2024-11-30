@@ -14,11 +14,11 @@ const ResetPassword = () => {
 
   const handleSubmit = (e) => {
       e.preventDefault();
-      navigate('/student-login')
+      navigate('/login')
   };
 
   return (
-    <div className="bg-[#4e605c] flex justify-center items-center h-[100vh]">
+    <div className="bg-[#16454395] flex justify-center items-center h-[100vh]">
       <form
         onSubmit={handleSubmit}
         className="w-[360px] bg-[white] px-[15px] pt-[15px] pb-[25px] rounded shadow-lg"
