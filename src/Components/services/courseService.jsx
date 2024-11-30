@@ -1,4 +1,4 @@
-import http from "./httpservice";
+import http from "./httpService";
 import baseurl from "../../config";
 import {handleSuccess} from "../utils/handleSuccess";
 import {handleFailure} from "../utils/handleFailure";

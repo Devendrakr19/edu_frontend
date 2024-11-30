@@ -1,5 +1,5 @@
 import baseurl from "../../config";
-import http from "./httpservice";
+import http from "./httpService";
 
 
 const loginService = {

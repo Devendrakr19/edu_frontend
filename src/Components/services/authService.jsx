@@ -1,4 +1,4 @@
-import http from "./httpservice";
+import http from "./httpService";
 import baseurl from "../../config";
 
 const authService = {
