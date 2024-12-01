@@ -1,20 +1,26 @@
 import { Link, useNavigate, Outlet } from "react-router-dom";
-import { useState } from "react";
-// import Dropdown from "./Components/Unpadh/Dropdown";
+import { useEffect, useState } from "react";
 import { Badge } from "antd";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaShoppingCart } from "react-icons/fa";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userProfile } from "./Components/Redux/slices/profileSlice";
 
 const Navbar = ({ AddCart }) => {
   const [isMobileSidebarVisible, setMobileSidebarVisible] = useState(false);
   const [MobileDropdownVisible, setMobileDropdownVisible] = useState(false);
   const [PcDropdownVisible, setPcDropdownVisible] = useState(false);
-  const userName = useSelector((state) => state?.loginsignupauth?.user?.name);
-  const role = useSelector((state) => state?.loginsignupauth?.user?.role);
 
+  const role = sessionStorage.getItem("Role"); 
+  const userName = sessionStorage.getItem("userName");
   const navigate = useNavigate();
+  const dispatch = useDispatch();  
+
+  useEffect(() => {
+      dispatch(userProfile());
+  }, [dispatch]);
+
 
   const toggleMobileSidebar = () => {
     setMobileSidebarVisible((prevstate) => !prevstate);
@@ -29,10 +35,10 @@ const Navbar = ({ AddCart }) => {
   };
 
   const handleDashboard = () => {
-    if (userName && role === "student") {
-      navigate("/student-dashboard");
-    } else {
+    if (role === "Teacher") {
       navigate("/teacher-dashboard");
+    } else {
+      navigate("/student-dashboard");
     }
   };
 
@@ -41,15 +47,13 @@ const Navbar = ({ AddCart }) => {
       {/* Navbar */}
       <div className="w-full flex justify-between items-center lg:sticky top-0 z-20 bg-white px-[6px] py-[16px] lg:px-[8px] shadow-md">
         <div className="ml-[30px] cursor-pointer">
-          <img src="./icons/logo.svg" alt="Logo" className="w-[180px]"/>
+          <img src="./icons/logo.svg" alt="Logo" className="w-[180px]" />
         </div>
 
         {/* Dropdown items in desktop mode */}
         <div className="hidden lg:flex lg:space-x-6">
           <div className="relative">
-            <Link className="hover:text-[#37a6a2] font-medium">
-              Programs
-            </Link>
+            <Link className="hover:text-[#37a6a2] font-medium">Programs</Link>
             {/* {PcDropdownVisible && <Dropdown />} */}
           </div>
 

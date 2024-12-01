@@ -5,9 +5,15 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoEyeOffSharp } from "react-icons/io5";
 import { IoEyeSharp } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { Loginuser } from "../Redux/slices/auth/authSlice";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisisble] = useState(true);
+
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state?.authUser?.loading);
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
@@ -21,8 +27,16 @@ const Login = () => {
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log("signup values", values);
+    onSubmit: async (values) => {
+      // console.log("signup values", values);
+      try {
+        await dispatch(Loginuser(values)).unwrap();
+        toast.success("Login successfully");
+        formik.resetForm();
+        navigate("/");
+      } catch (error) {
+        toast.error("Login Failed.");
+      }
     },
   });
 
@@ -85,7 +99,7 @@ const Login = () => {
                   {passwordVisible ? <IoEyeOffSharp /> : <IoEyeSharp />}
                 </span>
               </Grid>
-              <Grid xs={12}>
+              <Grid item xs={12}>
                 <div className="text-[12px] flex justify-end text-[blue]">
                   <span className="cursor-pointer" onClick={handleReset}>
                     Forgot Password?
@@ -97,10 +111,9 @@ const Login = () => {
                   <button
                     className="site_btn px-[40px] font-semibold"
                     type="submit"
-                    // disabled={loading}
+                    disabled={loading}
                   >
-                    {/* {loading ? "Submitting..." : "Submit"} */}
-                    Submit
+                    {loading ? "Logging..." : "Log in"}
                   </button>
                 </div>
                 <div className="text-[12px] mt-[5px] flex justify-center">

@@ -2,16 +2,17 @@ import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../Redux/slices/auth/StudentAuthSlice";
+import { logout } from "../Redux/slices/auth/authSlice";
 import RecordedClass from "../layouts/teacher-dashboard/recorded-class/RecordedClass";
 
 const TeacherDashboard = () => {
   const [handleactive, setHandleactive] = useState(0);
   const [dashboardsidebar, setDashboardsidebar] = useState(false);
-  const teacherData = useSelector((state)=>state?.loginsignupauth?.teacherdata)
+  const teacherData = useSelector((state)=>state?.profileList?.profileData?.user?.name);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  console.log("teacherName", teacherData);
   const HandleActiveContent = (index) => {
     setHandleactive(index);
     if (Tabs[index].label === "Logout") {
@@ -71,7 +72,7 @@ const TeacherDashboard = () => {
               />
             </div>
             <div className="p-[5px]">
-              <p>{teacherData?.name}</p>
+              <p>{teacherData}</p>
             </div>
           </div>
 

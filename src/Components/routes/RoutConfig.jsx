@@ -5,10 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import LandigPage from "../pages/LandigPage";
 import RouteLayout from "./RouteLayout";
 import ProtectedRoute from "./ProtectedRoute";
-// import Login from "../auth/student-auth/Login";
-// import Signup from "../auth/student-auth/Signup";
-// import TeacherLogin from "../auth/teacher-auth/TeacherLogin";
-// import TeacherSignup from "../auth/teacher-auth/TeacherSignup";
 import About from "../pages/About";
 import StudentDashboard from "../pages/StudentDashboard";
 import ResetPassword from "../layouts/forgot-password/ResetPassword";
@@ -26,8 +22,6 @@ const RoutConfig = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          {/* <Route path="/teacher-login" element={<TeacherLogin />} />
-          <Route path="/teacher-signup" element={<TeacherSignup />} /> */}
           <Route path="/get-otp" element={<GetOtp />} />          
           <Route path="/reset-password" element={<ResetPassword />} /> 
                  

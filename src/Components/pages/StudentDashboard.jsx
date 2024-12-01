@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Link,
   Outlet,
@@ -9,18 +9,21 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-import { logout } from "../Redux/slices/auth/StudentAuthSlice";
+import { logout } from "../Redux/slices/auth/authSlice";
 
 const StudentDashboard = () => {
   const [handleactive, setHandleactive] = useState(0);
   const [dashboardsidebar, setDashboardsidebar] = useState(false);
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const studentName = useSelector((state)=>state?.profileList?.profileData?.user?.name);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // console.log("studentName", studentName);
 
   const HandleActiveContent = (index) => {
     if (links[index].label === "Logout") {
-        dispatch(logout());
-        navigate("/");
+      dispatch(logout());
+      navigate("/");
     } else {
       setHandleactive(index);
       setDashboardsidebar(false);
@@ -78,7 +81,7 @@ const StudentDashboard = () => {
               />
             </div>
             <div className="p-[5px]">
-              <p>John Williams john</p>
+              <p>{studentName}</p>
             </div>
           </div>
           {links.map((link, index) => (

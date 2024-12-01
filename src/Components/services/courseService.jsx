@@ -4,14 +4,14 @@ import {handleSuccess} from "../utils/handleSuccess";
 import {handleFailure} from "../utils/handleFailure";
 
 const gettoken = () => {
-  return localStorage.getItem("token");
+  return sessionStorage.getItem("token");
 };
 
 const courseService = () => {
   const token = gettoken();
   const config = {
     headers: { Authorization: `Bearer ${token}` },
-    // withCredentials: true,
+    withCredentials: true,
   };
 
   return {

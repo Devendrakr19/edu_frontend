@@ -3,7 +3,7 @@ import baseurl from "../../config";
 
 const authService = {
   signup: async (formdata) => {
-    const url = `${baseurl}/auth/signup`;
+    const url = `${baseurl}/user/signup`;
     try {
       const response = await http.post(url, formdata);
       return response.data;
@@ -13,10 +13,9 @@ const authService = {
   },
 
   login: async (formdata) => {
-    const url = `${baseurl}/auth/login`;
+    const url = `${baseurl}/user/login`;
     try {
       const response = await http.post(url, formdata);
-      // console.log('Login response data:', response.data);
       return response.data;
     } catch (error) {
       throw error;
