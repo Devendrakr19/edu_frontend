@@ -32,14 +32,10 @@ const Page2 = () => {
         <div className="text-center">
           <div className="font-Poppins font-semibold text-4xl">
             <h1>
-              Start Learning with{" "}
-              <span className="text-{#0BA085} ">Uredx</span>
-              <br /> and achieve your goals
+            Learn, grow and succeed with Knowledge.all
             </h1>
           </div>
-          {/* <div className="absolute w-[80px] h-[75px] bg-background rounded-[15px] top-[150px]">
-
-          </div> */}
+           
         </div>
 
         {/* Right Side  */}

@@ -14,8 +14,8 @@ const Banner = () => {
                 <span className="text-[#ffff00c9]">Growth</span>
               </span>
 
-              <div class="w-[65%]">
-                <h1 class="animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-[30px] text-[40px] text-white font-bold">
+              <div className="w-[65%]">
+                <h1 className="animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-[30px] text-[40px] text-white font-bold">
                   Take the First Step
                 </h1>
               </div>

@@ -53,7 +53,7 @@ const Signup = () => {
         await dispatch(Signupuser(formdata)).unwrap();
         toast.success("User Created successfully");
         formik.resetForm();
-        navigate("/");
+        navigate("/login");
       } catch (error) {
         toast.error("Signup Failed.");
       }
