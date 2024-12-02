@@ -8,7 +8,7 @@ import { MdOutlineEmail } from "react-icons/md";
 const Footer = () => {
   return (
     <>
-       <section className=" h-[350px] bg-teal-100">
+       <section className=" h-[350px] bg-[#92bcbc]">
         <div className="justify-center items-center pt-10 capitalize ">
           <h1 className="text-center  text-4xl font-semibold tracking-wide">
             Subscribe to our <span className="text-teal-600">Uredx</span>
@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
       </section>
 
-      <footer className="bg-teal-200  text-center  lg:text-left ">
+      <footer className="bg-[#1a7676]  text-center  lg:text-left ">
         <div className="flex text-lg items-center justify-center   p-6  lg:justify-end">
           {/* <div className="mr-12 hidden lg:block font-medium">
           <span>Get connected with us on social networks</span>

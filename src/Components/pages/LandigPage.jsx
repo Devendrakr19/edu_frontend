@@ -3,12 +3,13 @@ import React, { useEffect } from "react";
 // import Page2 from '../layouts/landing-pages/Page2'
 // import Page3 from "../layouts/landing-pages/Page3";
 // import Page4 from "../layouts/landing-pages/Page4/demo";
-import Page5 from "../layouts/landing-pages/Page5";
+// import Page5 from "../layouts/landing-pages/Page5";
 import Page6 from "../layouts/landing-pages/Page6";
 import Aos from "aos";
 import Banner from "../layouts/landing-pages/Banner";
 import Facility from "../layouts/landing-pages/Facility";
 import Courses from "../layouts/landing-pages/Courses";
+import ChooseProgram from "../layouts/landing-pages/ChooseProgram";
 
 const LandigPage = () => {
   useEffect(() => {
@@ -18,14 +19,15 @@ const LandigPage = () => {
   return (
     <>
       {/* <Page1 /> */}
-      <div className="bg-[#deecec]">
+      <div className="bg-[#d6e1e1]">
         <Banner />
         <Facility />
         <Courses/>
+        <ChooseProgram/>
         {/* <Page2 /> */}
-        {/* <Page3 /> */}
+        {/* <Page3 /> // skip */}
         {/* <Page4 /> */}
-        <Page5 />
+        {/* <Page5 /> */}
         <Page6 />
       </div>
     </>
