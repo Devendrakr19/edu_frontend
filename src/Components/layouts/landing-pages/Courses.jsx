@@ -130,7 +130,7 @@ const Courses = () => {
     page * coursesPerPage,
     (page + 1) * coursesPerPage
   );
- 
+
   return (
     <>
       <div className="pt-[50px]">
@@ -222,21 +222,25 @@ const Courses = () => {
             </Grid>
           </div>
         </div>
-        <div className="flex justify-end mr-[55px] mt-[20px]">
-          <Stack spacing={2}>
-            <Pagination
-              count={Math.ceil(filteredCourses.length / coursesPerPage)}
-              page={page + 1}
-              onChange={handlePageCahnge}
-              sx={{
-                "& .MuiPaginationItem-root.Mui-selected": {
-                  backgroundColor: "#1a7676",
-                  color: "#fff",
-                },
-              }}
-            />
-          </Stack>
-        </div>
+        {paginatedCoures.length > 0 ? (
+          <div className="flex justify-end mr-[55px] mt-[20px]">
+            <Stack spacing={2}>
+              <Pagination
+                count={Math.ceil(filteredCourses.length / coursesPerPage)}
+                page={page + 1}
+                onChange={handlePageCahnge}
+                sx={{
+                  "& .MuiPaginationItem-root.Mui-selected": {
+                    backgroundColor: "#1a7676",
+                    color: "#fff",
+                  },
+                }}
+              />
+            </Stack>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
