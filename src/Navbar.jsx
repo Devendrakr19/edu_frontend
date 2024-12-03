@@ -56,10 +56,15 @@ const Navbar = ({ AddCart }) => {
             <Link className="hover:text-[#37a6a2] font-medium">Programs</Link>
             {/* {PcDropdownVisible && <Dropdown />} */}
           </div>
+          
+          <Link to="/" className="hover:text-[#2f9592] font-medium">
+            Test
+          </Link>
 
           <Link to="/" className="hover:text-[#2f9592] font-medium">
             Business
           </Link>
+
 
           <Link to="/about" className="hover:text-[#2f9592] font-medium">
             About us
