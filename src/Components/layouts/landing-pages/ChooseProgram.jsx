@@ -63,9 +63,13 @@ const ChooseProgram = () => {
             </div>
           </Grid>
           <Grid item md={6}>
-              <div className="bg-[#1a7676] pl-[15px] rounded-l-full overflow-hidden">
-                <img src="/icons/gr.png" alt="img" className="rounded-l-full mt-[-30px]" />
-              </div>
+            <div className="bg-[#1a7676] pl-[15px] rounded-l-full overflow-hidden">
+              <img
+                src="/icons/grow.png"
+                alt="img"
+                className="rounded-l-full mt-[-30px]"
+              />
+            </div>
           </Grid>
         </Grid>
       </div>

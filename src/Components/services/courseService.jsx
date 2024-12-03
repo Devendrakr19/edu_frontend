@@ -41,6 +41,19 @@ const courseService = () => {
         );
       }
     },
+    getallcourse: async ({page, limit}) => {
+      const url = `${baseurl}/course/get-all-course?${page}&${limit}`;
+      try {
+        const response = await http.get(url);
+        handleSuccess(response.data, "Course fetched successfully");
+        return response.data;
+      } catch (error) {
+        handleFailure(error);
+        throw new Error(
+          "An error occurred while fetching the course. Please try again."
+        );
+      }
+    },
     deletecourse: async (id) => {
       const url = `${baseurl}/course/delete-course/${id}`;
       try {

@@ -4,12 +4,14 @@ import React, { useEffect } from "react";
 // import Page3 from "../layouts/landing-pages/Page3";
 // import Page4 from "../layouts/landing-pages/Page4/demo";
 // import Page5 from "../layouts/landing-pages/Page5";
-import Page6 from "../layouts/landing-pages/Page6";
+// import Page6 from "../layouts/landing-pages/Page6";
 import Aos from "aos";
 import Banner from "../layouts/landing-pages/Banner";
 import Facility from "../layouts/landing-pages/Facility";
 import Courses from "../layouts/landing-pages/Courses";
 import ChooseProgram from "../layouts/landing-pages/ChooseProgram";
+import Testimonials from "../layouts/landing-pages/Testimonials";
+import Footer from "../layouts/landing-pages/Footer";
 
 const LandigPage = () => {
   useEffect(() => {
@@ -28,7 +30,9 @@ const LandigPage = () => {
         {/* <Page3 /> // skip */}
         {/* <Page4 /> */}
         {/* <Page5 /> */}
-        <Page6 />
+        <Testimonials/>
+        {/* <Page6 /> */}
+       <Footer/>
       </div>
     </>
   );

@@ -23,6 +23,17 @@ export const getCourse = createAsyncThunk(
     }
   }
 );
+export const getAllCourse = createAsyncThunk(
+  "course/getAllCourse",
+  async ({page, limit}, thunkAPI) => {
+    try {
+      const response = await courseService().getallcourse({page, limit});
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 export const deleteCourse = createAsyncThunk(
   "course/deleteCourse",
   async (id, thunkAPI) => {
@@ -41,7 +52,9 @@ const courseSlice = createSlice({
     createCourses: {},
     createCoursesLoading: false,
     getCourse:{},
-    getCourseLoading:false
+    getCourseLoading:false,
+    getAllCourse:{},
+    getAllCourseLoading:false
   },
   reducers: {},
 
@@ -66,6 +79,16 @@ const courseSlice = createSlice({
       })
       .addCase(getCourse.rejected, (state, action) => {
         state.getCourseLoading = false;
+      })
+      .addCase(getAllCourse.pending, (state) => {
+        state.getAllCourseLoading = true;
+      })
+      .addCase(getAllCourse.fulfilled, (state, action) => {
+        state.getAllCourse = action.payload;
+        state.getAllCourseLoading = false;
+      })
+      .addCase(getAllCourse.rejected, (state, action) => {
+        state.getAllCourseLoading = false;
       })
   },
 });

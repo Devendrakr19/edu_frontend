@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../Navbar";
-import Footer from "../../Footer";
+// import Footer from "../../Footer";
 import { useLocation } from "react-router-dom";
 
 const RouteLayout = ({ children }) => {
@@ -9,7 +9,7 @@ const RouteLayout = ({ children }) => {
     <>
       <Navbar />
       <main>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

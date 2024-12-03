@@ -1,117 +1,135 @@
-import { Grid, Pagination, Stack } from "@mui/material";
-import React, { useState } from "react";
+import { Grid, Pagination, Skeleton, Stack } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { getAllCourse } from "../../Redux/slices/courses/CourseSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+// const coureDetials = [
+//   {
+//     coursetitle: "Become MERN stack dsgfdh artdgdsf dhgdsf",
+//     teachername: "Devendra Kumar Pandit",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "java Developer",
+//     teachername: "Rohit",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "MERN Developer",
+//     teachername: "Anu",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "Frontend Developer",
+//     teachername: "Ravi",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "Pythons Developer",
+//     teachername: "Devendra",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "Pythons Developer",
+//     teachername: "Devendra",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "Pythons Developer",
+//     teachername: "Devendra",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "Pythons Developer",
+//     teachername: "Devendra",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "Pythons Developer",
+//     teachername: "Devendra",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "Pythons Developer",
+//     teachername: "Devendra",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "Pythons Developer",
+//     teachername: "Devendra",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+//   {
+//     coursetitle: "Pythons Developer",
+//     teachername: "Devendra",
+//     price: 1299,
+//     duration: 8,
+//     c_img: "/course.jpg",
+//   },
+// ];
 
 const Courses = () => {
-  const coureDetials = [
-    {
-      coursetitle: "Become MERN stack dsgfdh artdgdsf dhgdsf",
-      teachername: "Devendra Kumar Pandit",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "java Developer",
-      teachername: "Rohit",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "MERN Developer",
-      teachername: "Anu",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "Frontend Developer",
-      teachername: "Ravi",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "Pythons Developer",
-      teachername: "Devendra",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "Pythons Developer",
-      teachername: "Devendra",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "Pythons Developer",
-      teachername: "Devendra",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "Pythons Developer",
-      teachername: "Devendra",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "Pythons Developer",
-      teachername: "Devendra",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "Pythons Developer",
-      teachername: "Devendra",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "Pythons Developer",
-      teachername: "Devendra",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-    {
-      coursetitle: "Pythons Developer",
-      teachername: "Devendra",
-      price: 1299,
-      duration: 8,
-      c_img: "/course.jpg",
-    },
-  ];
+  const dispatch = useDispatch();
+  const courseData =
+    useSelector((state) => state?.coursedata?.getAllCourse?.courses) || [];
 
-  const [page, setPage] = useState(1); // Current page number
-  const coursesPerPage = 10; // Number of courses per page
+  const loading = useSelector(
+    (state) => state?.coursedata?.getAllCourseLoading
+  );
+
+  const [page, setPage] = useState(0);
+  const coursesPerPage = 10;
   const [searchInput, setSearchInput] = useState("");
 
-  const handlePageCahnge = (e, value) =>{
-      setPage(value);
-  }
+  // console.log("courseData", courseData);
+
+  useEffect(() => {
+    dispatch(getAllCourse({ page: page + 1, limit: coursesPerPage }));
+  }, [dispatch, page, coursesPerPage]);
+
+  const handlePageCahnge = (e, value) => {
+    setPage(value - 1);
+  };
 
   const handleSearchChange = (e) => {
     setSearchInput(e.target.value);
-    setPage(1); // Reset to first page whenever search changes
+    setPage(0);
   };
 
-  const filteredCourses = coureDetials.filter((item) => {
+  const filteredCourses = courseData.filter((item) => {
     return (
       item.coursetitle.toLowerCase().includes(searchInput.toLowerCase()) ||
-      item.teachername.toLowerCase().includes(searchInput.toLowerCase())
+      item.name.toLowerCase().includes(searchInput.toLowerCase())
     );
   });
 
-  const paginatedCoures = filteredCourses.slice((page - 1) * coursesPerPage, page * coursesPerPage);
-
+  const paginatedCoures = filteredCourses.slice(
+    page * coursesPerPage,
+    (page + 1) * coursesPerPage
+  );
 
   return (
     <>
@@ -139,12 +157,6 @@ const Courses = () => {
                   placeholder="Search Course or Teacher"
                   className="bg-[transparent] outline-none border-none pl-[15px] pr-[5px] py-[10px] w-[400px]"
                 />
-                {/* <button
-                  type="button"
-                  className="bg-[#1a7676] rounded-full px-[25px] py-[5px] text-[white] text-[18px] transition duration-500 ease-in-out hover:bg-[#279d9d]"
-                >
-                  Search
-                </button> */}
               </div>
             </div>
           </Grid>
@@ -154,29 +166,38 @@ const Courses = () => {
             <Grid container columnSpacing={2} rowSpacing={2}>
               {paginatedCoures.map((item, index) => (
                 <Grid key={index} item xs={5.5} md={2.4}>
-                  <div className="bg-[#fffbfb] hover:bg-[#297f7f] transition duration-500 ease-in-out cursor-pointer text-[#1a7676] hover:text-[white] rounded border-[1px] border-[#1a76768b] p-[10px]">
-                    <img
-                      src={item?.c_img}
-                      alt="no image"
-                      className="w-[100%]"
-                    />
-                    <p className="truncate mt-[6px] font-semibold">
-                      {item?.coursetitle}
-                    </p>
-                    <p className="truncate font-semibold">
-                      Duration:{" "}
-                      <span className="font-normal">
-                        {item?.duration} months
-                      </span>
-                    </p>
-                    <p className="truncate font-semibold">
-                      Teacher:{" "}
-                      <span className="font-normal">{item?.teachername}</span>
-                    </p>
-                    <p className="truncate font-semibold ">
-                      Price: <span className="font-normal">₹{item?.price}</span>
-                    </p>
-                  </div>
+                  {loading ? (
+                    <Skeleton variant="rectangular" width={250} height={180} />
+                  ) : (
+                    <div className="bg-[#fffbfb] hover:bg-[#297f7f] transition duration-500 ease-in-out cursor-pointer text-[#1a7676] hover:text-[white] rounded border-[1px] border-[#1a76768b] p-[10px]">
+                      <img
+                        src={item?.img}
+                        alt="no image"
+                        className="w-[100%] h-[140px]"
+                      />
+                      <p className="truncate mt-[6px] font-semibold">
+                        {item?.coursetitle}
+                      </p>
+                      <p className="truncate font-semibold">
+                        Duration:{" "}
+                        <span className="font-normal">
+                          {item?.duration} months
+                        </span>
+                      </p>
+                      <p className="truncate font-semibold">
+                        Teacher:{" "}
+                        <span className="font-normal">{item?.name}</span>
+                      </p>
+                      <p className="truncate font-semibold ">
+                        Price:{" "}
+                        {item?.price === 0 ? (
+                          <span className="font-normal">Free</span>
+                        ) : (
+                          <span className="font-normal">₹{item?.price}</span>
+                        )}
+                      </p>
+                    </div>
+                  )}
                 </Grid>
               ))}
             </Grid>
@@ -185,8 +206,8 @@ const Courses = () => {
         <div className="flex justify-end mr-[55px] mt-[20px]">
           <Stack spacing={2}>
             <Pagination
-              count={Math.ceil(coureDetials.length / coursesPerPage)}
-              page={page}
+              count={Math.ceil(filteredCourses.length / coursesPerPage)}
+              page={page + 1}
               onChange={handlePageCahnge}
               sx={{
                 "& .MuiPaginationItem-root.Mui-selected": {
