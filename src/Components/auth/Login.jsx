@@ -14,6 +14,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state?.authUser?.loading);
+
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
@@ -33,7 +34,18 @@ const Login = () => {
         await dispatch(Loginuser(values)).unwrap();
         toast.success("Login successfully");
         formik.resetForm();
-        navigate("/");
+
+        const role = sessionStorage.getItem("Role");
+
+        if (role === "Teacher") {
+          navigate("/teacher-dashboard");
+        } else if (role === "Student") {
+          navigate("/student-dashboard");
+        } else if (role === "Admin") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
       } catch (error) {
         toast.error("Login Failed.");
       }

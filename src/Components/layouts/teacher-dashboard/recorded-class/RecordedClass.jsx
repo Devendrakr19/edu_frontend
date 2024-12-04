@@ -16,7 +16,7 @@ const RecordedClass = () => {
   const dispatch = useDispatch();
   const courseData =
     useSelector((state) => state?.coursedata?.getCourse?.courses) || [];
-  console.log("courseData", courseData);
+  // console.log("courseData", courseData);
 
   const handleCourses = () => {
     setShowCourses(false);

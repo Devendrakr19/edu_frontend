@@ -1,10 +1,19 @@
 import { Grid } from "@mui/material";
 import React, { useState } from "react";
 import CountUp from "react-countup";
-import ScrollTrigger from "react-scroll-trigger";
+import { useInView } from "react-intersection-observer";
 
 const ChooseProgram = () => {
-  const [counteron, setcounteron] = useState(false);
+  const [counteron, setCounterOn] = useState(false);
+
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Only trigger once when the section comes into view
+    onChange: (inView) => {
+      if (inView) {
+        setCounterOn(true); // Start the counter when section is in view
+      }
+    }
+  });
 
   const card = [
     {
@@ -41,10 +50,7 @@ const ChooseProgram = () => {
             </div>
 
             <div className="pl-[60px] mt-[50px]">
-              <ScrollTrigger
-                onEnter={() => setcounteron(true)}
-                onExit={() => setcounteron(false)}
-              >
+              <div ref={ref}>
                 <div className="flex items-center gap-[80px]">
                   {card.map((data, index) => (
                     <div
@@ -59,7 +65,7 @@ const ChooseProgram = () => {
                     </div>
                   ))}
                 </div>
-              </ScrollTrigger>
+              </div>
             </div>
           </Grid>
           <Grid item md={6}>

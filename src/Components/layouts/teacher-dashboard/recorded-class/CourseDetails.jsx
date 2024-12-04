@@ -71,7 +71,7 @@ const CourseDetails = ({ open, onClose }) => {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log("clicked", values);
+      // console.log("clicked", values);
       const formData = new FormData();
 
       Object.keys(values).forEach((key) => {
@@ -83,21 +83,19 @@ const CourseDetails = ({ open, onClose }) => {
         formData.append("file", values.file);
         formData.append("filename", values.file.name);
       }
-
-      dispatch(createCourses(formData))
-        .then(() => {
-          toast.success("Course Created Successfully");
-          dispatch(getCourse());
-          onClose();
-          formik.resetForm();
-          formik.setFieldValue("file", null);
-          if (fileInputRef.current) {
-            fileInputRef.current.value = "";
-          }
-        })
-        .catch((error) => {
-          toast.error("Error creating course");
-        });
+      try {
+        dispatch(createCourses(formData)).unwrap();
+        toast.success("Course Created Successfully");
+        dispatch(getCourse());
+        onClose();
+        formik.resetForm();
+        formik.setFieldValue("file", null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      } catch (error) {
+        toast.error("Error creating course");
+      }
     },
   });
   return (

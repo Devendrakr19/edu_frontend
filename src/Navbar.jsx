@@ -47,7 +47,7 @@ const Navbar = ({ AddCart }) => {
       {/* Navbar */}
       <div className="w-full flex justify-between items-center lg:sticky top-0 z-20 bg-white px-[6px] py-[16px] lg:px-[8px] shadow-md">
         <div className="ml-[30px] cursor-pointer">
-          <img src="./icons/logo.svg" alt="Logo" className="w-[180px]" />
+          <img src="./icons/logo.svg" alt="Logo" className="w-[180px] cursor-pointer" onClick={() => navigate("/")} />
         </div>
 
         {/* Dropdown items in desktop mode */}

@@ -4,93 +4,6 @@ import { CiSearch } from "react-icons/ci";
 import { getAllCourse } from "../../Redux/slices/courses/CourseSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-// const coureDetials = [
-//   {
-//     coursetitle: "Become MERN stack dsgfdh artdgdsf dhgdsf",
-//     teachername: "Devendra Kumar Pandit",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "java Developer",
-//     teachername: "Rohit",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "MERN Developer",
-//     teachername: "Anu",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "Frontend Developer",
-//     teachername: "Ravi",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "Pythons Developer",
-//     teachername: "Devendra",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "Pythons Developer",
-//     teachername: "Devendra",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "Pythons Developer",
-//     teachername: "Devendra",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "Pythons Developer",
-//     teachername: "Devendra",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "Pythons Developer",
-//     teachername: "Devendra",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "Pythons Developer",
-//     teachername: "Devendra",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "Pythons Developer",
-//     teachername: "Devendra",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-//   {
-//     coursetitle: "Pythons Developer",
-//     teachername: "Devendra",
-//     price: 1299,
-//     duration: 8,
-//     c_img: "/course.jpg",
-//   },
-// ];
-
 const Courses = () => {
   const dispatch = useDispatch();
   const courseData =
@@ -164,8 +77,14 @@ const Courses = () => {
         <div className="flex justify-center items-center mt-[30px]">
           <div className="w-[90%]">
             <Grid container columnSpacing={2} rowSpacing={2}>
-              {paginatedCoures.length === 0 ? (
-                <Grid item xs={12} className="">
+              {loading ? (
+                [...Array(coursesPerPage)].map((_, index) => (
+                  <Grid key={index} item xs={5.5} md={2.4}>
+                    <Skeleton variant="rectangular" width={250} height={180} />
+                  </Grid>
+                ))
+              ) : filteredCourses.length === 0 ? (
+                <Grid item xs={12}>
                   <div className="flex flex-col justify-center items-center">
                     <img
                       src="/icons/no_data.png"
@@ -180,42 +99,34 @@ const Courses = () => {
               ) : (
                 paginatedCoures.map((item, index) => (
                   <Grid key={index} item xs={5.5} md={2.4}>
-                    {loading ? (
-                      <Skeleton
-                        variant="rectangular"
-                        width={250}
-                        height={180}
+                    <div className="bg-[#fffbfb] hover:bg-[#297f7f] transition duration-500 ease-in-out cursor-pointer text-[#1a7676] hover:text-[white] rounded border-[1px] border-[#1a76768b] p-[10px]">
+                      <img
+                        src={item?.img}
+                        alt="no image"
+                        className="w-[100%] h-[140px]"
                       />
-                    ) : (
-                      <div className="bg-[#fffbfb] hover:bg-[#297f7f] transition duration-500 ease-in-out cursor-pointer text-[#1a7676] hover:text-[white] rounded border-[1px] border-[#1a76768b] p-[10px]">
-                        <img
-                          src={item?.img}
-                          alt="no image"
-                          className="w-[100%] h-[140px]"
-                        />
-                        <p className="truncate mt-[6px] font-semibold">
-                          {item?.coursetitle}
-                        </p>
-                        <p className="truncate font-semibold">
-                          Duration:{" "}
-                          <span className="font-normal">
-                            {item?.duration} months
-                          </span>
-                        </p>
-                        <p className="truncate font-semibold">
-                          Teacher:{" "}
-                          <span className="font-normal">{item?.name}</span>
-                        </p>
-                        <p className="truncate font-semibold ">
-                          Price:{" "}
-                          {item?.price === 0 ? (
-                            <span className="font-normal">Free</span>
-                          ) : (
-                            <span className="font-normal">₹{item?.price}</span>
-                          )}
-                        </p>
-                      </div>
-                    )}
+                      <p className="truncate mt-[6px] font-semibold">
+                        {item?.coursetitle}
+                      </p>
+                      <p className="truncate font-semibold">
+                        Duration:{" "}
+                        <span className="font-normal">
+                          {item?.duration} months
+                        </span>
+                      </p>
+                      <p className="truncate font-semibold">
+                        Teacher:{" "}
+                        <span className="font-normal">{item?.name}</span>
+                      </p>
+                      <p className="truncate font-semibold ">
+                        Price:{" "}
+                        {item?.price === 0 ? (
+                          <span className="font-normal">Free</span>
+                        ) : (
+                          <span className="font-normal">₹{item?.price}</span>
+                        )}
+                      </p>
+                    </div>
                   </Grid>
                 ))
               )}
