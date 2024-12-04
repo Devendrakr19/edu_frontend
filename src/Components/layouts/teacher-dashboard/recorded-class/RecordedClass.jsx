@@ -45,14 +45,16 @@ const RecordedClass = () => {
                   key={index}
                   className="border-[1px] border-[#adacac] transition-all delay-75 hover:bg-[#ceeace] rounded w-[250px] px-[6px] py-[6px]"
                 >
+                <div className="h-[140px]">
                   <img
                     src={item?.img}
                     alt="Not available"
-                    className="w-[250px] rounded object-cover"
+                    className="rounded object-contain object-center"
                   />
+                </div>
                   <p
                     onClick={handleCourses}
-                    className="text-[15px] text-[#296bb6] cursor-pointer font-medium leading-[18px] mt-[5px] truncate"
+                    className="text-[15px] text-[#296bb6] cursor-pointer font-medium leading-[18px] mt-[2px] truncate"
                   >
                     {item?.coursetitle}
                   </p>
