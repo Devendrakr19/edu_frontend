@@ -21,6 +21,15 @@ const authService = {
       throw error;
     }
   },
+  refreshtoken: async (refreshToken) => {
+    const url = `${baseurl}/user/refresh-token`;
+    try {
+      const response = await http.post(url, {refreshToken});
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export default authService;

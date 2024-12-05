@@ -24,6 +24,17 @@ export const Loginuser = createAsyncThunk(
     }
   }
 );
+export const refreshToken = createAsyncThunk(
+  "auth/refreshToken",
+  async (refreshToken, thunkAPI) => {
+    try {
+      const response = await authService.refreshtoken(refreshToken);
+      return response;
+    } catch (error) {
+       return thunkAPI.rejectWithValue(error.response?.data?.message);
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
@@ -34,6 +45,7 @@ const authSlice = createSlice({
     },
     token: sessionStorage.getItem("token") || null,
     loading: false,
+    refreshTokenLoading:false
   },
   reducers: {
     logout: (state) => {
@@ -68,7 +80,19 @@ const authSlice = createSlice({
       })
       .addCase(Loginuser.rejected, (state, action) => {
         state.loading = false;
-      });
+      })
+      .addCase(refreshToken.pending, (state) => {
+        state.refreshTokenLoading = true;
+      })
+      .addCase(refreshToken.fulfilled, (state, action) => {
+        state.refreshTokenLoading = false;
+        state.user = action.payload;
+        state.token = action.payload.token;
+        sessionStorage.setItem("token", action.payload.token);
+      })
+      .addCase(refreshToken.rejected, (state, action) => {
+        state.refreshTokenLoading = false;
+      })
   },
 });
 

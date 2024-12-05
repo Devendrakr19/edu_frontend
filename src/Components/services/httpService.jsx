@@ -6,9 +6,10 @@ const http = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 });
 
-axios.interceptors.response.use(null, (error) => {
+http.interceptors.response.use(null, (error) => {
   return Promise.reject(error);
 });
 
