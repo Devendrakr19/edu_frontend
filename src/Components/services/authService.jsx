@@ -21,6 +21,15 @@ const authService = {
       throw error;
     }
   },
+  loginwithgoogle: async (token) => {
+    const url = `${baseurl}/user/auth/google/callback`;
+    try {
+      const response = await http.post(url, {token});
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
   refreshtoken: async (refreshToken) => {
     const url = `${baseurl}/user/refresh-token`;
     try {

@@ -6,16 +6,20 @@ import * as Yup from "yup";
 import { IoEyeOffSharp } from "react-icons/io5";
 import { IoEyeSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { Loginuser } from "../Redux/slices/auth/authSlice";
+import { Loginuser, loginWithGoogle } from "../Redux/slices/auth/authSlice";
 import { toast } from "react-toastify";
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const [passwordVisible, setPasswordVisisble] = useState(true);
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state?.authUser?.loading);
+  const withgoogle = useSelector((state) => state?.authUser);
 
   const navigate = useNavigate();
+
+  console.log("withgoogle", withgoogle);
 
   const validationSchema = Yup.object({
     email: Yup.string().required("Email is required."),
@@ -57,6 +61,23 @@ const Login = () => {
   };
   const handleReset = () => {
     navigate("/get-otp");
+  };
+
+  const handleGoogleLogin = async (response) => {
+    console.log(response); 
+    try {
+      // Use the token from Google login to authenticate with your backend
+      const { credential } = response;
+      if (credential) {
+        await dispatch(loginWithGoogle({ token: credential })).unwrap();
+        toast.success("Google login successful");
+        navigate("/student-dashboard");
+      } else {
+        toast.error("Google login failed.");
+      }
+    } catch (error) {
+      toast.error("Google login failed.");
+    }
   };
   return (
     <>
@@ -119,7 +140,7 @@ const Login = () => {
                 </div>
               </Grid>
               <Grid item xs={12}>
-                <div className="flex justify-center mt-[20px]">
+                <div className="flex justify-center mt-[8px]">
                   <button
                     className="site_btn px-[40px] font-semibold"
                     type="submit"
@@ -129,20 +150,18 @@ const Login = () => {
                   </button>
                 </div>
                 <div className="text-[12px] mt-[5px] flex justify-center">
-                  Don't have account
+                  Don't have account?
                   <Link to="/signup">
                     <span className="cursor-pointer ml-[3px] text-[blue] font-medium">
                       Signup
                     </span>
                   </Link>
                 </div>
-                <div className="flex justify-center items-center gap-[20px] mt-[20px]">
-                  <button className="site_btn border_btn text-[12px]">
-                    Login with Google
-                  </button>
-                  <button className="site_btn border_btn text-[12px]">
-                    Login with facebook
-                  </button>
+                <div className="flex justify-center items-center gap-[20px] mt-[10px] mb-[5px]">
+                  <GoogleLogin
+                    onSuccess={handleGoogleLogin}  
+                    onError={() => toast.error("Google login failed.")}
+                  />
                 </div>
               </Grid>
             </Grid>

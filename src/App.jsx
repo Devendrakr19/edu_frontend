@@ -3,13 +3,18 @@ import React from "react";
 import RoutConfig from "./Components/routes/RoutConfig";
 import { Provider } from 'react-redux';
  import { store } from "./Components/Redux/store";
+ import { GoogleOAuthProvider } from '@react-oauth/google'; 
 
 const App = () => {
+const GOOGLE_CLIENT_ID="409332349194-smimopmtgli6vmji8se46gank55000o6.apps.googleusercontent.com";
+
   return (
     <>
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <Provider store={store}>
        <RoutConfig />
       </Provider>
+    </GoogleOAuthProvider>
     </>
   );
 };
