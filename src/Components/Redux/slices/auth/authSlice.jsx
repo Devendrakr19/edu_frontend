@@ -24,17 +24,17 @@ export const Loginuser = createAsyncThunk(
     }
   }
 );
-export const loginWithGoogle = createAsyncThunk(
-  "auth/loginWithGoogle",
-  async (token, thunkAPI) => {
-    try {
-      const response = await authService.loginwithgoogle(token);
-      return response;
-    } catch (error) {
-       return thunkAPI.rejectWithValue(error.response?.data?.message || "Login failed");
-    }
-  }
-);
+// export const loginWithGoogle = createAsyncThunk(
+//   "auth/loginWithGoogle",
+//   async (token, thunkAPI) => {
+//     try {
+//       const response = await authService.loginwithgoogle(token);
+//       return response;
+//     } catch (error) {
+//        return thunkAPI.rejectWithValue(error.response?.data?.message || "Login failed");
+//     }
+//   }
+// );
 export const refreshToken = createAsyncThunk(
   "auth/refreshToken",
   async (refreshToken, thunkAPI) => {
@@ -104,20 +104,20 @@ const authSlice = createSlice({
       .addCase(refreshToken.rejected, (state, action) => {
         state.refreshTokenLoading = false;
       })
-      .addCase(loginWithGoogle.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(loginWithGoogle.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-        state.token = action.payload.token;
-        sessionStorage.setItem("userName", action.payload.name);
-        sessionStorage.setItem("Role", action.payload.role);
-        sessionStorage.setItem("token", action.payload.token);
-      })
-      .addCase(loginWithGoogle.rejected, (state, action) => {
-        state.loading = false;
-      })
+      // .addCase(loginWithGoogle.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(loginWithGoogle.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.user = action.payload;
+      //   state.token = action.payload.token;
+      //   sessionStorage.setItem("userName", action.payload.name);
+      //   sessionStorage.setItem("Role", action.payload.role);
+      //   sessionStorage.setItem("token", action.payload.token);
+      // })
+      // .addCase(loginWithGoogle.rejected, (state, action) => {
+      //   state.loading = false;
+      // })
   },
 });
 

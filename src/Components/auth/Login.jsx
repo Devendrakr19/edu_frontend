@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
@@ -6,9 +6,9 @@ import * as Yup from "yup";
 import { IoEyeOffSharp } from "react-icons/io5";
 import { IoEyeSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { Loginuser, loginWithGoogle } from "../Redux/slices/auth/authSlice";
+import { Loginuser } from "../Redux/slices/auth/authSlice";
 import { toast } from "react-toastify";
-import { GoogleLogin } from '@react-oauth/google';
+// import { GoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisisble] = useState(true);
@@ -62,23 +62,7 @@ const Login = () => {
   const handleReset = () => {
     navigate("/get-otp");
   };
-
-  const handleGoogleLogin = async (response) => {
-    console.log(response); 
-    try {
-      // Use the token from Google login to authenticate with your backend
-      const { credential } = response;
-      if (credential) {
-        await dispatch(loginWithGoogle({ token: credential })).unwrap();
-        toast.success("Google login successful");
-        navigate("/student-dashboard");
-      } else {
-        toast.error("Google login failed.");
-      }
-    } catch (error) {
-      toast.error("Google login failed.");
-    }
-  };
+ 
   return (
     <>
       <div className="bg-[#16454395] flex justify-center items-center h-[100vh]">
@@ -158,10 +142,10 @@ const Login = () => {
                   </Link>
                 </div>
                 <div className="flex justify-center items-center gap-[20px] mt-[10px] mb-[5px]">
-                  <GoogleLogin
-                    onSuccess={handleGoogleLogin}  
+                  {/* <GoogleLogin
+                    onSuccess={handleGoogleLogin}
                     onError={() => toast.error("Google login failed.")}
-                  />
+                  /> */}
                 </div>
               </Grid>
             </Grid>
