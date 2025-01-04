@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <>
       <div className="min-h-[570px] bg-[#1a7676]">
-        <Grid container rowGap={2} className="">
+        <Grid container columnSpacing={4} className="">
           <Grid item md={6} xs={12} className="">
             <div className="flex flex-col pl-[80px] mt-[50px]">
               <span className="text-[65px] font-extrabold leading-[80px]">
@@ -42,15 +42,6 @@ const Banner = () => {
           <Grid item md={6} xs={12}>
             <div className="max-w-[400px] md:max-w-xl pl-8 md:pt-12 ">
               <img src="about.png" alt="" className="relative" />
-            </div>
-
-            <div className="  grid grid-cols-4 gap-4 absolute right-16 top-28 ">
-              {Array.from({ length: 4 * 4 }).map((_, index) => (
-                <div
-                  key={`grid-item-${index}`}
-                  className="md:opacity-100 opacity-0  w-2 h-2  bg-yellow-300 rounded-full "
-                ></div>
-              ))}
             </div>
           </Grid>
         </Grid>

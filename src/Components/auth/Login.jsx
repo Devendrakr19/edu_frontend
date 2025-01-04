@@ -42,7 +42,7 @@ const Login = () => {
         const role = sessionStorage.getItem("Role");
 
         if (role === "Teacher") {
-          navigate("/teacher-dashboard");
+          navigate("/teacher-dashboard/recorded-class");
         } else if (role === "Student") {
           navigate("/student-dashboard");
         } else if (role === "Admin") {

@@ -36,7 +36,7 @@ const Navbar = ({ AddCart }) => {
 
   const handleDashboard = () => {
     if (role === "Teacher") {
-      navigate("/teacher-dashboard");
+      navigate("/teacher-dashboard/recorded-class");
     } else {
       navigate("/student-dashboard");
     }

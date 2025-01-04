@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../Redux/slices/auth/authSlice";
-// import RecordedClass from "../layouts/teacher-dashboard/recorded-class/RecordedClass";
 import { Grid } from "@mui/material";
 
 const TeacherDashboard = () => {
@@ -13,6 +12,7 @@ const TeacherDashboard = () => {
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const Handledashboardsidebar = () => {
     setDashboardsidebar(!dashboardsidebar);
@@ -73,7 +73,7 @@ const TeacherDashboard = () => {
               {Tabs.map((item, index) => (
                 <div
                   key={index}
-                  className="px-[15px] text-[#efecec] mt-[5px] py-[5px] font-medium rounded cursor-pointer hover:bg-[#7978786d]"
+                  className={`px-[15px] text-[#efecec] mt-[5px] py-[5px] font-medium rounded cursor-pointer ${location.pathname === item?.url ? "bg-[#797878af]" : ""}`}
                 >
                   {item.label === "Logout" ? (
                     <div onClick={HandleLogout}>{item.label}</div>

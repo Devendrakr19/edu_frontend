@@ -61,7 +61,7 @@ const ChooseProgram = () => {
                       <h1 className="text-[40px] font-semibold mt-[3px] text-[#1a7676]">
                         {counteron && data.count}
                       </h1>
-                      <p className="text-[18px]">{data.title}</p>
+                      <p className="text-[18px] font-medium">{data.title}</p>
                     </div>
                   ))}
                 </div>

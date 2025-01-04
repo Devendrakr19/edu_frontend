@@ -36,7 +36,7 @@ const RoutConfig = () => {
 
 
             {/* // Teacher dashboard */}
-            <Route path="/teacher-dashboard" element={<ProtectedRoute> <TeacherDashboard /> </ProtectedRoute>}>
+            <Route path="/teacher-dashboard/" element={<ProtectedRoute> <TeacherDashboard /> </ProtectedRoute>}>
               <Route index element={<RecordedClass />} />
               <Route path="recorded-class" element={<RecordedClass /> }/>
               <Route path="live-class" element={ <LiveClass /> }/>

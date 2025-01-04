@@ -70,7 +70,7 @@ const CourseDetails = ({ open, onClose }) => {
       comment: "",
     },
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       // console.log("clicked", values);
       const formData = new FormData();
 
@@ -84,15 +84,21 @@ const CourseDetails = ({ open, onClose }) => {
         formData.append("filename", values.file.name);
       }
       try {
-        dispatch(createCourses(formData)).unwrap();
+
+        await dispatch(createCourses(formData)).unwrap();
+
         toast.success("Course Created Successfully");
+
         dispatch(getCourse());
+
         onClose();
         formik.resetForm();
+
         formik.setFieldValue("file", null);
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
+
       } catch (error) {
         toast.error("Error creating course");
       }

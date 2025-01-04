@@ -54,7 +54,8 @@ const courseSlice = createSlice({
     getCourse:{},
     getCourseLoading:false,
     getAllCourse:{},
-    getAllCourseLoading:false
+    getAllCourseLoading:false,
+    deleteCourseLoading: false, 
   },
   reducers: {},
 
@@ -89,6 +90,15 @@ const courseSlice = createSlice({
       })
       .addCase(getAllCourse.rejected, (state, action) => {
         state.getAllCourseLoading = false;
+      })
+      .addCase(deleteCourse.pending, (state) => {
+        state.deleteCourseLoading = true;
+      })
+      .addCase(deleteCourse.fulfilled, (state, action) => {
+        state.deleteCourseLoading = false;
+      })
+      .addCase(deleteCourse.rejected, (state, action) => {
+        state.deleteCourseLoading = false;
       })
   },
 });

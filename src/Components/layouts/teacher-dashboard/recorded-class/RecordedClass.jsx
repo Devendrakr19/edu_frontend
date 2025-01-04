@@ -9,14 +9,15 @@ import {
   getCourse,
 } from "../../../Redux/slices/courses/CourseSlice";
 import { toast } from "react-toastify";
+import { CircularProgress } from "@mui/material";
 
 const RecordedClass = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [showCourses, setShowCourses] = useState(true);
   const dispatch = useDispatch();
-  const courseData =
-    useSelector((state) => state?.coursedata?.getCourse?.courses) || [];
-  // console.log("courseData", courseData);
+  const courseData = useSelector((state) => state?.coursedata?.getCourse?.courses) || [];
+  const loading = useSelector((state) => state?.coursedata?.deleteCourseLoading);
+  // console.log("loading", loading);
 
   const handleCourses = () => {
     setShowCourses(false);
@@ -45,7 +46,7 @@ const RecordedClass = () => {
                   key={index}
                   className="border-[1px] border-[#adacac] transition-all delay-75 hover:bg-[#ceeace] rounded w-[250px] px-[6px] py-[6px]"
                 >
-                <div className="h-[140px]">
+                <div className="h-[140px] w-[140px]">
                   <img
                     src={item?.img}
                     alt="Not available"
@@ -94,18 +95,22 @@ const RecordedClass = () => {
                         {item?.duration} months
                       </span>
                     </p>
-                    <MdDelete
-                      className="cursor-pointer text-[red] text-[18px] transition duration-500 ease-in-out hover:scale-150"
-                      onClick={() => handleDelete(item?._id)}
-                    />
+                    {
+                      loading ? (<CircularProgress size="20px" color="error"/>) : (
+                      <MdDelete
+                        className="cursor-pointer text-[red] text-[18px] transition duration-500 ease-in-out hover:scale-150"
+                        onClick={() => handleDelete(item?._id)}
+                      />
+                     )}
                   </div>
                 </div>
               ))}
               <div
-                className="border-[1px] min-h-[220px] border-[#adacac] flex justify-center items-center transition-all delay-75 hover:bg-[#ceeace] cursor-pointer rounded w-[250px] px-[6px] py-[6px]"
+                className="border-[1px] min-h-[220px] border-[#adacac] flex flex-col justify-center items-center transition-all delay-75 hover:bg-[#ceeace] cursor-pointer rounded w-[250px] px-[6px] py-[6px]"
                 onClick={HandlePopup}
               >
                 <FaFolderPlus className="text-[88px]" />
+                <span>Create a new course</span>
               </div>
             </>
           ) : (

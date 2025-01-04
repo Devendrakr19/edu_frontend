@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Grid } from "@mui/material";
-import { SiComma } from "react-icons/si";
 
 const Testimonials = () => {
   const settings = {
@@ -85,10 +84,6 @@ const Testimonials = () => {
               {stuCard.map((data, index) => (
                 <div key={index} className="p-[8px]">
                   <div className="border-[1px] border-gray-400 bg-slate-200 px-[20px] py-[20px] rounded-xl h-[270px]">
-                    <div className="flex">
-                      <SiComma className="transform scale-x-[-1] text-[26px]" />
-                      <SiComma className="transform scale-x-[-1] text-[26px]" />
-                    </div>
                     <p className="mt-[10px] pl-[8px]">{data.title}</p>
 
                     <div className="flex items-center gap-[20px]">

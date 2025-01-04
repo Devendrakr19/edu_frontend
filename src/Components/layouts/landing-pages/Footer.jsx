@@ -95,13 +95,13 @@ const Footer = () => {
           <Grid item md={3}>
             <div className="flex flex-col items-center">
               <div className="flex flex-col">
-                <h6 className="text-[#dfdddd] mb-[5px] underline text-[22px] font-semibold">
+                <h6 className="mb-[5px] underline text-[22px] font-semibold">
                   Important Links
                 </h6>
                 {InportantLink.map((item, index) => (
                   <Link
                     key={index}
-                    className="mb-[8px] hover:translate-x-1 duration-300 hover:text-[white]"
+                    className="mb-[8px] hover:translate-x-1 duration-300 text-[#dfdddd] hover:text-[#ffffff]"
                   >
                     {item?.title}
                   </Link>
@@ -112,13 +112,13 @@ const Footer = () => {
           <Grid item md={3}>
             <div className="flex flex-col items-center">
               <div className="flex flex-col">
-                <h6 className="text-[#dfdddd] mb-[5px] underline text-[22px] font-semibold">
+                <h6 className="mb-[5px] underline text-[22px] font-semibold">
                   About
                 </h6>
                 {About.map((item, index) => (
                   <Link
                     key={index}
-                    className="mb-[8px] hover:translate-x-1 duration-300 hover:text-[white]"
+                    className="mb-[8px] hover:translate-x-1 duration-300 text-[#dfdddd] hover:text-[#ffffff]"
                   >
                     {item?.title}
                   </Link>
@@ -129,7 +129,7 @@ const Footer = () => {
           <Grid item md={3}>
             <div className="flex flex-col  ">
               <div className="flex flex-col">
-                <h6 className="text-[#dfdddd] mb-[5px] underline text-[22px] font-semibold">
+                <h6 className="mb-[5px] underline text-[22px] font-semibold">
                   Our office
                 </h6>
                 {OurOffice.map((item, index) => (
@@ -137,7 +137,7 @@ const Footer = () => {
                     key={index}
                     className="flex items-center gap-[10px] mb-[15px]"
                   >
-                    <span className="text-[22px]">{item?.logo}</span>
+                    <span className="text-[22px] text-[#dfdddd]">{item?.logo}</span>
                     <p className="">{item?.title}</p>
                   </div>
                 ))}
